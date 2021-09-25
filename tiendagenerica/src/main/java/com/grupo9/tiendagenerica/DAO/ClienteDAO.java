@@ -161,7 +161,7 @@ public class ClienteDAO {
 			Statement consulta = conex.getConnection().createStatement();
 			
 			//preparando sentencia a realizar
-			String sentencia = "DELETE from clientes where cedula_cliente=\" + cedula_cliente + \";";
+			String sentencia = "DELETE from clientes where cedula_cliente=" + cedula_cliente + ";";
 			
 			//Impresion de verificacion
 			System.out.println("Registrado " + sentencia);
