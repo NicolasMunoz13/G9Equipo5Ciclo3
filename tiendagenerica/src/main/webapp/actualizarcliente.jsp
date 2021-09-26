@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Actualización de Usuario</title>
+	<title>Actualización de Cliente</title>
 	
   <!-- Estilos Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -73,14 +73,14 @@
 <div class="full-form">
   <center>
   <div id="error" class="alert alert-danger visually-hidden"
-				role="alert">Error al actualizar el usuario, verifique que la cedula y usuario dados sean validos</div>
+				role="alert">Error al actualizar el cliente, verifique que la cedula y usuario dados sean validos</div>
 
 			<div id="correcto" class="alert alert-success visually-hidden"
-				role="alert">Usuario actualizado con exito</div>
+				role="alert">Cliente actualizado con exito</div>
 				
 <div style="padding-left: 5px">
 		<h1>
-			Recuerde que debe ingresar la cedula y el usuario correctos para modificar los otros datos
+			Recuerde que debe ingresar la cedula modificar los otros datos
 		</h1>
 		<div class="container">
 				
@@ -93,7 +93,7 @@
     
      <div class="col-12" >
       <div class="form-floating">
-        <input type="number" class="form-control" id="cedula_usuario" id="form-floating " placeholder="Cedula" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="cedula" required>
+        <input type="number" class="form-control" id="cedula_cliente" id="form-floating " placeholder="Cedula" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="cedula" required>
         <label for="form-floating">&nbsp&nbsp<i class="fas fa-id-card"></i>&nbsp&nbspCedula</label>
       </div>
     </div>
@@ -102,8 +102,8 @@
      </div>  
       <div id="user-pass-info">
         <div class="form-floating">      
-        <input type="text" class="form-control" class="input-field" id="user" id="form-floating " placeholder=" Usuario" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required>
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-user"></i>&nbsp&nbspUsuario</label>
+        <input type="text" class="form-control" class="input-field" id="nombre_cliente" id="form-floating " placeholder="Nombre CLiente" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required>
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-user"></i>&nbsp&nbspNombre Cliente</label>
       </div>
 	</div>
       
@@ -113,25 +113,25 @@
     
      <div class="col-12" >
       <div class="form-floating">
-        <input type="email" class="form-control" id="email_usuario" id="form-floating " placeholder="Correo Electronico" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="correo" required >
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-at"></i>&nbsp&nbspCorreo Electronico</label>
+        <input type="text" class="form-control" id="direccion_cliente" id="form-floating " placeholder="Direccion Cliente" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="correo" required >
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-at"></i>&nbsp&nbspDireccion Cliente</label>
       </div>
     </div>
     
      <div class="col-12" >
       <div class="form-floating">
-        <input type="text" class="form-control" id="nombre_usuario" id="form-floating " placeholder="Nombre Completo" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="nobmre" required >
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-signature"></i>&nbsp&nbspNombre Completo</label>
+        <input type="text" class="form-control" id="telefono_cliente" id="form-floating " placeholder="Telefono Cliente" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="nobmre" required >
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-signature"></i>&nbsp&nbspTelefono Cliente</label>
       </div>
    
     
      <div class="form-floating">
-        <input type="password" class="form-control"  id="password" id="form-floating " placeholder="Contraseña" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="contraseña" required>
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-key"></i>&nbsp&nbspContraseña</label>
+        <input type="email" class="form-control"  id="email_cliente" id="form-floating " placeholder="Correo Electronico" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="contraseña" required>
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-key"></i>&nbsp&nbspCorreo Electronico</label>
       </div>
 
     <button type="button" class="btn btn-warning" onclick="actualizar()">
-				<i class="fas fa-edit"></i> Actualizar usuario
+				<i class="fas fa-edit"></i> Actualizar Cliente
 			</button>
     
     
@@ -139,11 +139,11 @@
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarusuario.jsp'">Crear Usuario</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarusuario.jsp'">Consultar Usuario</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarsuario.jsp'" >Actualizar Usuario</button>
-       <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarusuario.jsp'">Borrar Cliente</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listausuarios.jsp'">Lista de Usuarios</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarcliente.jsp'">Crear Usuario</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarcliente.jsp'">Consultar Usuario</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarcliente.jsp'" >Actualizar Usuario</button>
+       <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarcliente.jsp'">Borrar Cliente</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listacliente.jsp'">Lista de Usuarios</button>
     </div>
   </div>
 </div>
@@ -156,65 +156,61 @@
 
 <script>
 		function actualizar() {
-			var x = document.getElementById("user").value;
-			var y = document.getElementById("cedula_usuario").value;
+			
+			var y = document.getElementById("cedula_cliente").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/listausuarios', false);
+			req.open('GET', 'http://localhost:8080/listaclientes', false);
 			req.send(null);
-			var usuarios = null;
+			var clientes=null;
 			if (req.status == 200)
-				usuarios = JSON.parse(req.responseText);
-			console.log(JSON.parse(req.responseText));
-			for (i = 0; i < usuarios.length; i++) {
-				console.log(usuarios[i].usuario);
-				console.log(usuarios[i].cedula_usuario);
-				if (usuarios[i].usuario === x) {
-					console.log(usuarios[i].usuario + " " + x);
-					coincidencia = true
-					break;
-				}
-				if (usuarios[i].cedula_usuario === y) {
-					console.log(usuarios[i].cedula_usuario + " " + y);
-					coincidencia = true
+				clientes=JSON.parse(req.responseText);
+			  	console.log(JSON.parse(req.responseText));
+			  	
+			for (i = 0; i < clientes.length; i++) {
+				console.log(clientes[i].cedula_cliente);
+				
+				if (clientes[i].cedula_cliente ==y ) {
+					console.log(clientes[i].cedula_cliente +" "+y);	
+					coincidencia =true
 					break;
 				}
 			}
 			console.log(coincidencia);
 			if (coincidencia != false) {
 				var formData = new FormData();
-				formData.append("cedula_usuario", document
-						.getElementById("cedula_usuario").value);
-				formData.append("email_usuario", document
-						.getElementById("email_usuario").value);
-				formData.append("nombre_usuario", document
-						.getElementById("nombre_usuario").value);
-				formData.append("password",
-						document.getElementById("password").value);
-				formData.append("usuario",
-						document.getElementById("user").value);
+				formData.append("cedula_cliente", document
+						.getElementById("cedula_cliente").value);
+				formData.append("nombre_cliente", document
+						.getElementById("nombre_cliente").value);
+				formData.append("direccion_cliente", document
+						.getElementById("direccion_cliente").value);
+				formData.append("telefono_cliente",
+						document.getElementById("telefono_cliente").value);
+				formData.append("email_cliente",
+						document.getElementById("email_cliente").value);
 				var xhr = new XMLHttpRequest();
-				xhr.open("PUT", "http://localhost:8080/actualizarusuarios");
+				xhr.open("PUT", "http://localhost:8080/actualizarcliente");
 				var element = document.getElementById("error");
 				element.classList.add("visually-hidden");
 				var element2 = document.getElementById("correcto");
 				element2.classList.remove("visually-hidden");
-				document.getElementById("cedula_usuario").value = "";
-				document.getElementById("email_usuario").value = "";
-				document.getElementById("nombre_usuario").value = "";
-				document.getElementById("password").value = "";
-				document.getElementById("user").value = "";
+				document.getElementById("cedula_cliente").value = "";
+				document.getElementById("nombre_cliente").value = "";
+				document.getElementById("direccion_cliente").value = "";
+				document.getElementById("telefono_cliente").value = "";
+				document.getElementById("email_cliente").value = "";
 				xhr.send(formData);
 			} else {
 				var element = document.getElementById("error");
 				element.classList.remove("visually-hidden");
 				var element2 = document.getElementById("correcto");
 				element2.classList.add("visually-hidden");
-				document.getElementById("cedula_usuario").value = "";
-				document.getElementById("email_usuario").value = "";
-				document.getElementById("nombre_usuario").value = "";
-				document.getElementById("password").value = "";
-				document.getElementById("user").value = "";
+				document.getElementById("cedula_cliente").value = "";
+				document.getElementById("nombre_cliente").value = "";
+				document.getElementById("direccion_cliente").value = "";
+				document.getElementById("telefono_cliente").value = "";
+				document.getElementById("email_cliente").value = "";
 			}
 		}
 	</script> 
