@@ -83,47 +83,39 @@
        <div class="column">
        <div id="flex-child-element1">
        
-       <div class="col-12" >
-        <div class="form-floating">
-          <input type="text" class="form-control" id="busquedacliente" id="form-floating " placeholder="Cliente a buscar" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Usuario a buscar" required>
-          <label for="form-floating">&nbsp&nbsp<i class="fas fa-id-user"></i>&nbsp&nbspIngrese Cliente a buscar</label>
-        </div>
-      </div>
-
-      <br/>
-      <br/>
-    
-    
-      <div id="user-pass-info">
+      
         <div class="form-floating">      
-        <input type="number" class="form-control" class="input-field" id="cedula_cliente" id="form-floating " placeholder=" Cedula" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required>
+        <input type="number" class="form-control" class="input-field" id="cedula_cliente" id="form-floating " placeholder=" Cedula" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"  required>
         <label for="form-floating">&nbsp&nbsp<i class="fas fa-id-card"></i>&nbsp&nbspCedula</label>
       </div>
+      
+      <br/>
+      <br/>
 
       <div class="form-floating">
-        <input type="text" class="form-control"  id="nombre_cliente" id="form-floating " placeholder="Nombre Cliente" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Nombre Cliente" required>
+        <input type="text" class="form-control"  id="nombre_cliente" id="form-floating " placeholder="Nombre Cliente" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Nombre Cliente" disabled="disabled" required>
         <label for="form-floating">&nbsp&nbsp<i class="fas fa-user"></i>&nbsp&nbspNombre Cliente</label>
       </div>
 
-    </div>   
+     
 
     <div class="col-12" >
       <div class="form-floating">
-        <input type="text" class="form-control" id="direccion_cliente" id="form-floating " placeholder="Dirección de Cliente" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Dirección de Cliente" required>
+        <input type="text" class="form-control" id="direccion_cliente" id="form-floating " placeholder="Dirección de Cliente" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Dirección de Cliente" disabled="disabled" required>
         <label for="form-floating">&nbsp&nbsp<i class="fas fa-house-user"></i>&nbsp&nbspDirección de Cliente</label>
       </div>
     </div>
 
     <div class="col-12" >
       <div class="form-floating">
-        <input type="text" class="form-control" id="telefono_cliente" id="form-floating " placeholder="Telefono Cliente" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Telefono Cliente" required >
+        <input type="text" class="form-control" id="telefono_cliente" id="form-floating " placeholder="Telefono Cliente" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Telefono Cliente" disabled="disabled" required >
         <label for="form-floating">&nbsp&nbsp<i class="fas fa-mobile-alt"></i>&nbsp&nbspTelefono Cliente</label>
       </div>
     </div>
 
     <div class="col-12" >
       <div class="form-floating">
-        <input type="email" class="form-control" id="email_cliente" id="form-floating " placeholder="Correo Electronico" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="correo" required >
+        <input type="email" class="form-control" id="email_cliente" id="form-floating " placeholder="Correo Electronico" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="correo" disabled="disabled" required >
         <label for="form-floating">&nbsp&nbsp<i class="fas fa-at"></i>&nbsp&nbspCorreo Electronico</label>
       </div>
     </div>
@@ -133,7 +125,7 @@
      <div id="flex-child-element">
       <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarclientes.jsp'">Crear Nuevo Cliente</button>
       <button type="button" class="btn btn-info btn-lg" onclick="enviar()">Consultar Cliente</button>
-      <button type="button" class="btn btn-warning btn-lg">Actualizar Cliente</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarcliente.jsp'">Actualizar Cliente</button>
       <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarcliente.jsp'">Borrar Cliente</button>
       <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaclientes.jsp'">Lista de Clientes</button>
     </div>
@@ -152,9 +144,9 @@ function enviar() {
 	
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
-	var cedula =  document.getElementById("busquedacliente").value;
-	req.open('GET', "http://localhost:8080/consultarcliente?cedula_usuario="+cedula, false);
-	req.send(cedula);
+	var cedula=   document.getElementById("cedula_cliente").value;
+	req.open('GET', 'http://localhost:8080/consultarcliente?cedula_cliente='+cedula, false);
+	req.send(null);
 	var cliente = null;
 	if (req.status == 200)
 		cliente = JSON.parse(req.responseText);
@@ -171,13 +163,12 @@ function enviar() {
 	
 if (cliente.toString()!=""){
 
-	document.getElementById("cedula_cliente").value = cliente[0].cedula_cliente;
 	document.getElementById("nombre_cliente").value = cliente[0].nombre_cliente;
 	document.getElementById("direccion_cliente").value = cliente[0].direccion_cliente;
 	document.getElementById("telefono_cliente").value = cliente[0].telefono_cliente;
 	document.getElementById("email_cliente").value = cliente[0].email_cliente;
 	
-	document.getElementById("clientsearch").value = "";
+	document.getElementById("cedula_cliente").value = "";
 
 
 } else {
