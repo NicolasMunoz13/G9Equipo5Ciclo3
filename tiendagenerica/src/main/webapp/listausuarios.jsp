@@ -108,11 +108,11 @@
 
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarusuario.jsp'">Crear</button>
-      <button type="button" class="btn btn-info btn-lg">Consultar</button>
-      <button type="button" class="btn btn-warning btn-lg">Actualizar</button>
-      <button type="button" class="btn btn-danger btn-lg">Borrar</button>
-      <button type="button" class="btn btn-info btn-lg">Lista de Usuarios</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarusuario.jsp'">Crear Usuario</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarusuario.jsp'">Consultar Usuario</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarusuario.jsp'">Actualizar Usuario</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarusuario.jsp'">Borrar Usuario</button>
+      <button type="button" class="btn btn-info btn-lg"onclick="window.location.href='/listausuarios.jsp'">Lista de Usuarios</button>
     </div>
   
 </div>
