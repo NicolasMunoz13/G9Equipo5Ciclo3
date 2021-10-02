@@ -92,7 +92,7 @@ public class ClienteDAO {
 		catch (Exception e) {
 			// Mostar cualquier otro error
 			System.out.println("------------------- ERROR --------------");
-			System.out.println("No se pudo consultar el cliente");
+			System.out.println("No se pudo consultar el cliente por error");
 			System.out.println(e.getMessage());
 			System.out.println(e.getLocalizedMessage());
 		}
