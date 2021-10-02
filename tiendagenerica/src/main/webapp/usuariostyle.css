@@ -6,6 +6,18 @@ html,body {
   padding: 0;
 }
 
+h1{
+  padding: 25px 0px 25px 0px;
+  text-shadow: 4px 4px 4px #f7522d;
+  transition: 0.5s;
+}
+
+h1:hover{
+  color: white;
+  transition: 0.5s;
+  text-shadow: 4px 4px 4px red;
+}
+
 h2{
   background: linear-gradient(-135deg, #f58727, #f7522d);
   color: white;
@@ -33,6 +45,12 @@ h2{
   background-repeat: no-repeat;
   background-size: cover;
 
+}
+
+.form-label{
+  font-weight: bold;
+  font-size: 20px;
+  font-style: italic;
 }
 
 input[type="text"],  input[type="password"], input[type="email"], input[type="number"]{
@@ -84,6 +102,26 @@ display: flex;
     flex-wrap: wrap;
     text-align: center;
     align-content: center
+}
+
+#form-prodcut{
+    margin: auto;
+    width: auto;
+    flex: 50%;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;  
+    min-height: 87vh;
+}
+
+#form-input{
+  flex: 50%;
+  margin: 10px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
+  align-content: center
 }
 
 #flex-child-element1 {
