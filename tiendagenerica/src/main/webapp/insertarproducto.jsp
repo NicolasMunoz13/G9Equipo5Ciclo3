@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Insercion de Productos</title>
+	<title>Insertar Producto</title>
 	
   <!-- Estilos Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -17,12 +17,14 @@
 	
 
 	<!--- estilos --->
-	<link href="usuariostyle.css" rel="stylesheet" type="text/css" />
+	<link href="insertarstyle.css" rel="stylesheet" type="text/css" />
 	<!--- CDN --->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
 	 crossorigin="anonymous" referrerpolicy="no-referrer">
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
   
 </head>
 
@@ -30,14 +32,14 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Prodcutos</div>
+		<div class="sticky-lg-top">Tienda de Productos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
 			<span class="navbar-brand" href="#">
-				<h3>Módulos</h3>
+				<h3>MÃ³dulos</h3>
 			</span>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -45,16 +47,16 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link"  href="listausuarios.jsp"><h3>Usuarios</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="listaclientes.jsp"><h3>Clientes</h3></a>
+          <a class="nav-link" href="listaclientes.jsp" ><h3>Clientes</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  active" href="insertarproducto.jsp"><h3>Productos</h3></a>
+          <a class="nav-link active" aria-current="page" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><h3>Ventas</h3></a>
@@ -70,31 +72,44 @@
 <!-- Zona de ingreso de ingreso de informacio -->
 <div class="full-form">
   <center>
-  <form id="form-prodcut"  type="" method="">
-
-    		<h1>
-			<i class="fas fa-file-import"></i> Insertando archivo de productos
-		</h1>
-		<div class="container">
-
-
-			<div id="error" class="alert alert-danger visually-hidden"
-				role="alert">Archivo vacio, extensión no valida o datos corruptos (El separador debe ser coma ",")</div>
+  <div id="error" class="alert alert-danger visually-hidden"
+				role="alert">Archivo vacio, extensiÃ³n no valida o datos corruptos (El separador debe ser coma ",")</div>
 
 			<div id="correcto" class="alert alert-success visually-hidden"
 				role="alert">Productos importados desde CSV con exito</div>
+				
+<div style="padding-left: 5px">
+		<h1>
+			Cargar el archivo de productos
+		</h1>
+		<div class="container">
+				
+				
+  <form class="row g-3" id="flex-parent-element" type="" method="">
+    <div class="row">
+       <div class="column">
+       <div id="flex-child-element1">
   
-
-  <div class="column">
-     <div id="form-input">
-					<label for="formFileLg" class="form-label">Seleccionar
-						archivo CSV con el inventario de productos</label> <input
-						class="form-control form-control-lg" id="archivo" type="file"
-						accept=".csv">
-					<button type="button" class="btn btn-success"
-						onclick="subirArchivo()"><i class="fas fa-file-csv"></i>&nbsp&nbspSubir archivo</button>
+  
+  	<div>
+		<label for="formFileLg" class="form-label">Seleccionar
+		archivo CSV con el inventario de productos</label> <input
+		class="form-control form-control-lg" id="archivo" type="file"
+		accept=".csv">
+		<button type="button" class="btn btn-success"
+		onclick="subirArchivo()">Subir archivo</button>
+	</div>
+    
+    
     </div>
-  
+  </div>
+  <div class="column">
+     <div id="flex-child-element">
+     <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarproducto.jsp'">Cargar Inventario</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarproducto.jsp'">Consultar Producto</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/listaproductos.jsp'">Lista de Productos</button>
+    </div>
+  </div>
 </div>
 
 
@@ -103,7 +118,8 @@
 
 </div>
 
-<script>
+
+	<script>
 		function subirArchivo() {
 
 			try {
@@ -170,7 +186,5 @@
 		}
 	</script>
 
-
 </body>
-
 </html>
