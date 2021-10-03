@@ -28,9 +28,9 @@ public class ProductoController {
 	}
 
 	@GetMapping("/consultarproducto")
-	public ArrayList<ProductoVO> consultarProducto(Integer code) {
+	public ArrayList<ProductoVO> consultarProducto(Integer codigo_producto) {
 		ProductoDAO Dao = new ProductoDAO();
-		return Dao.consultarProducto(code);
+		return Dao.consultarProducto(codigo_producto);
 	}
 
 	@GetMapping("/listarproductos")
