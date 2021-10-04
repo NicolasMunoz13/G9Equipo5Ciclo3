@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Eliminar Cliente</title>
+	<title>Eliminar Proveedor</title>
 	
   <!-- Estilos Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -47,13 +47,13 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="listaclientes.jsp" ><h3>Clientes</h3></a>
+          <a class="nav-link" href="listaclientes.jsp" ><h3>Clientes</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
+          <a class="nav-link active" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
@@ -73,15 +73,15 @@
 <div class="full-form">
   <center>
   <div id="error" class="alert alert-danger visually-hidden"
-				role="alert">Error al eliminar el cliente, verifique que 
-				exista un cliente con la cedula ingresada</div>
+				role="alert">Error al eliminar el proveedor, verifique que 
+				exista un proveedor con el NIT ingresado</div>
 
 			<div id="correcto" class="alert alert-success visually-hidden"
-				role="alert">Cliente eliminado con exito</div>
+				role="alert">Proveedor eliminado con exito</div>
 			
 	<div style="padding-left: 5px">
 		<h1>
-			<i class="fas fa-skull-crossbones"></i> Escriba la cedula del cliente a eliminar
+			<i class="fas fa-skull-crossbones"></i> Escriba el NIT del proveedor a eliminar
 		</h1>
 		<div class="container">
 			
@@ -92,14 +92,14 @@
        <div id="flex-child-element1">
     
     <div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1">Cedula</span> <input
+					<span class="input-group-text" id="basic-addon1">NIT</span> <input
 						type="text" class="form-control"
-						placeholder="Inserte cedula aqui..."
-						aria-describedby="basic-addon1" required id="cedula_cliente">
+						placeholder="Inserte el NIT aqui..."
+						aria-describedby="basic-addon1" required id="nitproveedor">
 				</div>
     
     <button type="button" class="btn btn-danger" onclick="eliminar()">
-				<i class="fas fa-skull-crossbones"></i> Eliminar cliente
+				<i class="fas fa-skull-crossbones"></i> Eliminar Proveedor
 			</button>
     
 
@@ -107,11 +107,11 @@
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarcliente.jsp'">Crear </button>
-      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='/consultarcliente.jsp'">Consultar Cliente</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarcliente.jsp'">Actualizar Cliente</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarcliente.jsp'">Borrar Cliente</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaclientes.jsp'">Lista de Clientes</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarproveedor.jsp'">Crear </button>
+      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='/consultarproveedor.jsp'">Consultar Proveedor</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarproveedor.jsp'">Actualizar Proveedor</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarproveedor.jsp'">Borrar Proveedor</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaproveedores.jsp'">Lista de Proveedor</button>
     </div>
   </div>
 </div>
@@ -126,37 +126,37 @@
 <script>
 
 function eliminar() {
-	var y = document.getElementById("cedula_cliente").value;
+	var y = document.getElementById("nitproveedor").value;
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
-	req.open('GET', 'http://localhost:8080/listaclientes', false);
+	req.open('GET', 'http://localhost:8080/listaprovedores', false);
 	req.send(null);
-	var clientes = null;
+	var proveedores = null;
 	if (req.status == 200)
-		clientes = JSON.parse(req.responseText);
+		proveedores = JSON.parse(req.responseText);
 	console.log(JSON.parse(req.responseText));
-	for (i = 0; i < clientes.length; i++) {
+	for (i = 0; i < proveedores.length; i++) {
 		
-		console.log(clientes[i].cedula_cliente);
-		if (clientes[i].cedula_cliente == y) {
-			console.log(clientes[i].cedula_cliente + " " + y);
+		console.log(proveedores[i].nitproveedor);
+		if (proveedores[i].nitproveedor == y) {
+			console.log(proveedores[i].nitproveedor + " " + y);
 			coincidencia = true
 			break;
 		}
 	}
 	console.log(coincidencia);
 	if (coincidencia != false) {
-		var cedula=document.getElementById("cedula_cliente").value;
+		var nit=document.getElementById("nitproveedor").value;
 		
 		var xhr = new XMLHttpRequest();
-		xhr.open("DELETE", "http://localhost:8080/eliminarcliente?cedula_cliente="+cedula);
+		xhr.open("DELETE", "http://localhost:8080/eliminarprovedor?nitproveedor="+nit);
 		
 		var element = document.getElementById("error");
 		element.classList.add("visually-hidden");
 		
 		var element2 = document.getElementById("correcto");
 		element2.classList.remove("visually-hidden");
-		document.getElementById("cedula_cliente").value = "";
+		document.getElementById("nitproveedor").value = "";
 		xhr.send();
 	} else {
 		var element = document.getElementById("error");
@@ -165,7 +165,7 @@ function eliminar() {
 		var element2 = document.getElementById("correcto");
 		element2.classList.add("visually-hidden");
 		
-		document.getElementById("cedula_cliente").value = "";;
+		document.getElementById("nitproveedor").value = "";;
 	}
 }
 </script>

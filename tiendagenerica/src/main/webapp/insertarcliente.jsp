@@ -32,7 +32,7 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Prodcutos</div>
+		<div class="sticky-lg-top">Tienda de Productos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->
@@ -121,9 +121,9 @@
   <div class="column">
      <div id="flex-child-element">
       <button type="button" class="btn btn-primary btn-lg" onclick="enviar()">Crear Nuevo Cliente</button>
-      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='/consultarcliente.jsp'">Consultar Cliente</button>
-      <button type="button" class="btn btn-warning btn-lg"onclick="window.location.href='/actualizarcliente.jsp'">Actualizar Cliente</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarcliente.jsp'">Borrar Cliente</button>
+      <button type="button" class="btn btn-info btn-lg"onclick="window.location.href='/consultarcliente.jsp'">Consultar Cliente</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarcliente.jsp'">Actualizar Cliente</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick="window.location.href='/eliminarcliente.jsp'">Borrar Cliente</button>
       <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaclientes.jsp'">Lista de Clientes</button>
     </div>
   </div>
@@ -150,7 +150,7 @@ function enviar() {
 	for (i = 0; i < clientes.length; i++) {
 		console.log(clientes[i].cedula_cliente);
 		
-		if (clientes[i].cedula_cliente ==y ) {
+		if (clientes[i].cedula_cliente ===y ) {
 			console.log(clientes[i].cedula_cliente +" "+y);	
 			coincidencia =true
 			break;

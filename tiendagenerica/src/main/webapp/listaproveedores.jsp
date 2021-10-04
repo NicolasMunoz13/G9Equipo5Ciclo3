@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Lista de Usuarios</title>
+	<title>Lista de Proveedores</title>
 	
   <!-- Estilos Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -25,32 +25,32 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
 <script>
-	var baseurl = "http://localhost:8080/listausuarios";
-	function loadusuarios() {
+		var baseurl = "http://localhost:8080/listaproveedores";
+		function loadprovedor() {
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", baseurl, true);
 		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-				var usuarios = JSON.parse(xmlhttp.responseText);
-				var tbltop = "<table class='table table-dark table-striped'><tr><th>Cedula</th><th>Email</th><th>Nombre</th><th>Password</th><th>Usuario</th></tr>";
-				var main = "";
-				for (i = 0; i < usuarios.length; i++) {
-					main += "<tr><td>" + usuarios[i].cedula_usuario
-							+ "</td><td>" + usuarios[i].email_usuario
-							+ "</td><td>" + usuarios[i].nombre_usuario
-							+ "</td><td>" + usuarios[i].password + "</td><td>"
-							+ usuarios[i].usuario + "</td></tr>";
-				}
-				var tblbottom = "</table>";
-				var tbl = tbltop + main + tblbottom;
-				document.getElementById("usuariosinfo").innerHTML = tbl;
+		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			var proveedores = JSON.parse(xmlhttp.responseText);
+			var tbltop = "<table class='table table-dark table-striped'><tr><th>NIT</th><th>Ciudad</th><th>Direccion</th><th>Nombre</th><th>Telefono</th></tr>";
+			var main = "";
+			for (i = 0; i < proveedores.length; i++) {
+				main += "<tr><td>" + proveedores[i].nitproveedor
+						+ "</td><td>" + proveedores[i].ciudad_proveedor
+						+ "</td><td>" + proveedores[i].direccion_proveedor
+						+ "</td><td>" + proveedores[i].nombre_proveedor + "</td><td>"
+						+ proveedores[i].telefono_proveedor + "</td></tr>";
+			}
+			var tblbottom = "</table>";
+			var tbl = tbltop + main + tblbottom;
+			document.getElementById("proveedorinfo").innerHTML = tbl;
 			}
 		};
 		xmlhttp.send();
 	}
-	window.onload = function() {
-		loadusuarios();
-	}
+		window.onload = function() {
+			loadprovedor();
+}
 </script>
   
 </head>
@@ -74,16 +74,16 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="listaclientes.jsp"><h3>Clientes</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
+          <a class="nav-link active" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><h3>Productos</h3></a>
+          <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><h3>Ventas</h3></a>
@@ -102,17 +102,17 @@
   <form class="row g-3" id="flex-parent-element" type="" method="">
   
     <!--  Aqui es donde se autogenera la tabla basado en el script -->
-					<div class="col align-self-center" id="usuariosinfo">
+					<div class="col align-self-center" id="proveedorinfo">
 					
 					</div>
 
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarusuario.jsp'">Crear</button>
-      <button type="button" class="btn btn-info btn-lg">Consultar</button>
-      <button type="button" class="btn btn-warning btn-lg">Actualizar</button>
-      <button type="button" class="btn btn-danger btn-lg">Borrar</button>
-      <button type="button" class="btn btn-info btn-lg">Lista de Usuarios</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick= "window.location.href='/insertarproveedor.jsp'">Crear Proveedor</button>
+      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='/consultarproveedor.jsp'">Consultar Proveedor</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick= "window.location.href='/actulizarproveedor.jsp'">Actualizar Proveedor</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarproveedor.jsp'">Borrar Proveedor</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaproveedores.jsp'">Lista de Proveedores</button>
     </div>
   
 </div>

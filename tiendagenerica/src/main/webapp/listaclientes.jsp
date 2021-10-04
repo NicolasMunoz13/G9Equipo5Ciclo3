@@ -59,7 +59,7 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Prodcutos</div>
+		<div class="sticky-lg-top">Tienda de Productos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->
@@ -80,7 +80,7 @@
           <a class="nav-link active" href="listaclientes.jsp"><h3>Clientes</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><h3>Proveedores</h3></a>
+          <a class="nav-link" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><h3>Productos</h3></a>
@@ -109,9 +109,9 @@
   <div class="column">
      <div id="flex-child-element">
       <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarcliente.jsp'">Crear Cliente</button>
-      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='/consultarcliente.jsp'">Consultar Cliente</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarcliente.jsp'">Consultar Cliente</button>
       <button type="button" class="btn btn-warning btn-lg"onclick="window.location.href='/actualizarcliente.jsp'">Actualizar Cliente</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarcliente.jsp'">Borrar Cliente</button>
+      <button type="button" class="btn btn-danger btn-lg"onclick="window.location.href='/eliminarcliente.jsp'">Borrar Cliente</button>
       <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/insertarcliente.jsp'">Lista de Cliente</button>
     </div>
   
