@@ -56,7 +56,7 @@
           <a class="nav-link" href="#"><h3>Proveedores</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><h3>Productos</h3></a>
+          <a class="nav-link" href=insertarproducto.jsp#"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><h3>Ventas</h3></a>
@@ -121,9 +121,9 @@
   <div class="column">
      <div id="flex-child-element">
       <button type="button" class="btn btn-primary btn-lg" onclick="validacion(); enviar()">Crear Nuevo Usuario</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="validacion(); enviar()">Consultar Usuario</button>
-      <button type="button" class="btn btn-warning btn-lg">Actualizar Usuario</button>
-      <button type="button" class="btn btn-danger btn-lg">Borrar Usuario</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarusuario.jsp'">Consultar Usuario</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarusuario.jsp'">Actualizar Usuario</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarusuario.jsp'">Borrar Usuario</button>
       <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listausuarios.jsp'">Lista de Usuarios</button>
     </div>
   </div>

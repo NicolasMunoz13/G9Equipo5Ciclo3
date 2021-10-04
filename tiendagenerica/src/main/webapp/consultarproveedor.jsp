@@ -32,7 +32,7 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Productos</div>
+		<div class="sticky-lg-top">Tienda de Prodcutos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->

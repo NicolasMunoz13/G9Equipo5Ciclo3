@@ -108,10 +108,10 @@
   <div class="column">
      <div id="flex-child-element">
       <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarproveedor.jsp'">Crear </button>
-      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='/consultarproveedor.jsp'">Consultar Proveedor</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarproveedor.jsp'">Actualizar Proveedor</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarproveedor.jsp'">Borrar Proveedor</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaproveedores.jsp'">Lista de Proveedor</button>
+      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='/consultarproveedor.jsp'">Consultar Cliente</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarproveedor.jsp'">Actualizar Cliente</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarproveedor.jsp'">Borrar Cliente</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaproveedores.jsp'">Lista de Clientes</button>
     </div>
   </div>
 </div>

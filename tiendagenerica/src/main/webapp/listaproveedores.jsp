@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
 <script>
-		var baseurl = "http://localhost:8080/listaproveedores";
+		var baseurl = "http://localhost:8080/listaprovedores";
 		function loadprovedor() {
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", baseurl, true);

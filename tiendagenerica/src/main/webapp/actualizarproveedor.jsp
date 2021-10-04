@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>ActualizaciÃ³n de proveedores</title>
+	<title>Actualización de Proveedor</title>
 	
   <!-- Estilos Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -39,7 +39,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
 			<span class="navbar-brand" href="#">
-				<h3>MÃ³dulos</h3>
+				<h3>Módulos</h3>
 			</span>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -56,7 +56,7 @@
           <a class="nav-link active" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><h3>Productos</h3></a>
+          <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><h3>Ventas</h3></a>
@@ -73,14 +73,14 @@
 <div class="full-form">
   <center>
   <div id="error" class="alert alert-danger visually-hidden"
-				role="alert">Error al actualizar el proveedor, verifique que la cedula y usuario dados sean validos</div>
+				role="alert">Error al actualizar el proveedor, verifique que el NIT sea valido</div>
 
 			<div id="correcto" class="alert alert-success visually-hidden"
 				role="alert">Proveedor actualizado con exito</div>
 				
 <div style="padding-left: 5px">
 		<h1>
-			Recuerde que debe ingresar la cedula modificar los otros datos
+			Recuerde que debe ingresar el NIT para modificar los otros datos
 		</h1>
 		<div class="container">
 				
@@ -93,7 +93,7 @@
     
      <div class="col-12" >
       <div class="form-floating">
-        <input type="number" class="form-control" id="nitproveedor" id="form-floating " placeholder="NIT" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="nit" required>
+        <input type="number" class="form-control" id="nitproveedor" id="form-floating " placeholder="NIT" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="cedula" required>
         <label for="form-floating">&nbsp&nbsp<i class="fas fa-id-card"></i>&nbsp&nbspNIT</label>
       </div>
     </div>
@@ -102,8 +102,8 @@
      </div>  
       <div id="user-pass-info">
         <div class="form-floating">      
-        <input type="text" class="form-control" class="input-field" id="ciudad_proveedor" id="form-floating " placeholder="Ciudad proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required>
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-user"></i>&nbsp&nbspCiudad proveedor</label>
+        <input type="text" class="form-control" class="input-field" id="ciudad_proveedor" id="form-floating " placeholder="Ciudad Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required>
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-user"></i>&nbsp&nbspCiudad Proveedor</label>
       </div>
 	</div>
       
@@ -113,21 +113,21 @@
     
      <div class="col-12" >
       <div class="form-floating">
-        <input type="text" class="form-control" id="direccion_proveedor" id="form-floating " placeholder="Direccion proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Correo proveedor" required >
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-at"></i>&nbsp&nbspDireccion Proveedor</label>
+        <input type="text" class="form-control" id="direccion_proveedor" id="form-floating " placeholder="Direccion de Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="correo" required >
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-at"></i>&nbsp&nbspDireccion de Proveedor</label>
       </div>
     </div>
     
      <div class="col-12" >
       <div class="form-floating">
-        <input type="text" class="form-control" id="nombre_proveedor" id="form-floating " placeholder="Nombre proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Nombre proveedor" required >
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-signature"></i>&nbsp&nbspNombre Proveedor</label>
+        <input type="text" class="form-control" id="nombre_proveedor" id="form-floating " placeholder="Nombre de Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="nobmre" required >
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-signature"></i>&nbsp&nbspNombre de Proveedor</label>
       </div>
    
     
      <div class="form-floating">
-        <input type="text" class="form-control"  id="telefono_proveedorr" id="form-floating " placeholder="Telefono proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Telefono proveedor" required>
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-key"></i>&nbsp&nbspTelefono Proveedor</label>
+        <input type="email" class="form-control"  id="telefono_proveedor" id="form-floating " placeholder="Teleforno de Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="contraseña" required>
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-key"></i>&nbsp&nbspTeleforno de Proveedor</label>
       </div>
 
     <button type="button" class="btn btn-warning" onclick="actualizar()">
@@ -139,11 +139,11 @@
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarcliente.jsp'">Crear proveedor</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarcliente.jsp'">Consultar proveedor</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="actualizar()" >Actualizar proveedor</button>
-       <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarcliente.jsp'">Borrar proveedor</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listacliente.jsp'">Lista de proveedores</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarproveedor.jsp'">Crear Proveedor</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarproveedor.jsp'">Consultar Proveedor</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarproveedor.jsp'" >Actualizar Proveedor</button>
+       <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarproveedor.jsp'">Borrar Proveedor</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaproveedores.jsp'">Lista de Proveedores</button>
     </div>
   </div>
 </div>
@@ -160,7 +160,7 @@
 			var y = document.getElementById("nitproveedor").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/listaproveedores', false);
+			req.open('GET', 'http://localhost:8080/listaprovedores', false);
 			req.send(null);
 			var proveedores=null;
 			if (req.status == 200)

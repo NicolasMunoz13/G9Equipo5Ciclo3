@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Informacion de Proveedor</title>
+	<title>Infomacion del Proveedor</title>
 	
   <!-- Estilos Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -32,14 +32,14 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Productos</div>
+		<div class="sticky-lg-top">Tienda de Prodcutos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
 			<span class="navbar-brand" href="#">
-				<h3>M贸dulos</h3>
+				<h3>M骴ulos</h3>
 			</span>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -50,13 +50,13 @@
           <a class="nav-link" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="listaclientes.jsp"><h3>Clientes</h3></a>
+          <a class="nav-link " href="listaclientes.jsp"><h3>Clientes</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><h3>Productos</h3></a>
+          <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><h3>Ventas</h3></a>
@@ -73,7 +73,7 @@
 <div class="full-form">
   <center>
   <div id="error" class="alert alert-danger visually-hidden"
-					role="alert">Error al crear el proveedor, verifique que no exista un proveedor con el mismo Nit</div>
+					role="alert">Error al crear el proveedor, verifique que no exista un proveedor con el NIT dados</div>
 					
 			<div id="correcto" class="alert alert-success visually-hidden"
 				role="alert">Proveedor creado con exito</div>
@@ -85,35 +85,35 @@
     
       <div id="user-pass-info">
         <div class="form-floating">      
-        <input type="text" class="form-control" class="input-field" id="nitproveedor" id="form-floating " placeholder=" Nit " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required>
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-id-card"></i>&nbsp&nbspNit</label>
+        <input type="text" class="form-control" class="input-field" id="nitproveedor" id="form-floating " placeholder=" NIT" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required>
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-id-card"></i>&nbsp&nbspNIT</label>
       </div>
 
       <div class="form-floating">
-        <input type="text" class="form-control"  id="ciudad_proveedor" id="form-floating " placeholder="Ciudad del Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Ciudad del Proveedor" required>
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-user"></i>&nbsp&nbspCiudad del Proveedor</label>
+        <input type="text" class="form-control"  id="ciudad_proveedor" id="form-floating " placeholder="Ciudad Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Nombre Cliente" required>
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-city"></i>&nbsp&nbspCiudad Proveedor</label>
       </div>
 
     </div>   
 
     <div class="col-12" >
       <div class="form-floating">
-        <input type="text" class="form-control" id="direccion_proveedor" id="form-floating " placeholder="Direcci贸n del Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Direcci贸n del Proveedor" required>
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-house-user"></i>&nbsp&nbspDirecci贸n del Proveedor</label>
+        <input type="text" class="form-control" id="direccion_proveedor" id="form-floating " placeholder="Direcci髇 de proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Direcci髇 de Cliente" required>
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-house-user"></i>&nbsp&nbspDirecci髇 de proveedor</label>
       </div>
     </div>
 
     <div class="col-12" >
       <div class="form-floating">
-        <input type="text" class="form-control" id="nombre_proveedor" id="form-floating " placeholder="Nombre del Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Nombre del Proveedor" required >
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-mobile-alt"></i>&nbsp&nbspNombre del Proveedor</label>
+        <input type="text" class="form-control" id="nombre_proveedor" id="form-floating " placeholder="Nombre de Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Telefono Cliente" required >
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-user"></i>&nbsp&nbspNombre de Proveedor</label>
       </div>
     </div>
 
     <div class="col-12" >
       <div class="form-floating">
-        <input type="email" class="form-control" id="telefono_proveedor" id="form-floating " placeholder="Telefono del Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Telefono del Proveedor" required >
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-at"></i>&nbsp&nbspTelefono del Proveedor</label>
+        <input type="email" class="form-control" id="telefono_proveedor" id="form-floating " placeholder="Teleforno de Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="correo" required >
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-mobile-alt"></i>&nbsp&nbspTeleforno de Proveedor</label>
       </div>
     </div>
     </div>
@@ -121,10 +121,10 @@
   <div class="column">
      <div id="flex-child-element">
       <button type="button" class="btn btn-primary btn-lg" onclick="enviar()">Crear Nuevo Proveedor</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarproveedor.jsp'">Consultar Proveedor</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarproveedor.jsp'">Actualizar Proveedor</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick="window.location.href='/eliminarproveedor.jsp'">Borrar Proveedor</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaproveedores.jsp'">Lista de proveedores</button>
+      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='/consultarproveedor.jsp'">Consultar Proveedor</button>
+      <button type="button" class="btn btn-warning btn-lg"onclick="window.location.href='/actualizarproveedor.jsp'">Actualizar Proveedor</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarproveedor.jsp'">Borrar Proveedor</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaproveedores.jsp'">Lista de Proveedores</button>
     </div>
   </div>
 </div>
@@ -140,7 +140,7 @@ function enviar() {
 	var y = document.getElementById("nitproveedor").value;
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
-	req.open('GET', 'http://localhost:8080/listaproveedores', false);
+	req.open('GET', 'http://localhost:8080/listaprovedores', false);
 	req.send(null);
 	var proveedores=null;
 	if (req.status == 200)
@@ -150,7 +150,7 @@ function enviar() {
 	for (i = 0; i < proveedores.length; i++) {
 		console.log(proveedores[i].nitproveedor);
 		
-		if (proveedores[i].nitproveedor === y ) {
+		if (proveedores[i].nitproveedor ==y ) {
 			console.log(proveedores[i].nitproveedor +" "+y);	
 			coincidencia =true
 			break;
@@ -195,3 +195,4 @@ function enviar() {
 	</script>  
 </body>
 
+</html>
