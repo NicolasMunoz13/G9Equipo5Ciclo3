@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
 import com.grupo9.tiendagenerica.DTO.ProveedorVO;
 
-//Clase para generar el acceso a la base de datos
 public class ProveedorDAO {
 	
 	public void registrarProveedor(ProveedorVO user) {
@@ -37,7 +37,7 @@ public class ProveedorDAO {
 			conex.desconectar();
 			
 		} catch (SQLException e) {
-			// Si hay error en SQL mostrarlo
+			// Si hay error en SQL mstrarlo
 			System.out.println("------------------- ERROR --------------");
 			System.out.println("No se pudo insertar el proveedor");
 			System.out.println(e.getMessage());
@@ -52,7 +52,7 @@ public class ProveedorDAO {
 	}
 	
 	
-	//Permite consultar el usuario asociado al user enviado como parametro
+	//Permite consultar el proveedor asociado al user enviado como parametro
 	public ArrayList<ProveedorVO> consultarProveedor(Integer nitproveedor){
 		//Lista que contendra el o los usuarios obtenidos
 		ArrayList<ProveedorVO> listaproveedores = new ArrayList<ProveedorVO>();
@@ -69,9 +69,9 @@ public class ProveedorDAO {
 			//Crear un objeto basado en la clase entidad con los datos encontrados
 			if (res.next()) {
 				ProveedorVO Proveedor = new ProveedorVO();
-				Proveedor.setNitproveedor(Integer.parseInt(res.getString("integer nitproveedor")));
+				Proveedor.setNitproveedor(Integer.parseInt(res.getString("nitproveedor")));
 				Proveedor.setCiudad_proveedor(res.getString("ciudad_proveedor"));
-				Proveedor.setDireccion_proveedor(res.getString("direccion_Proveedor"));
+				Proveedor.setDireccion_proveedor(res.getString("direccion_proveedor"));
 				Proveedor.setNombre_proveedor(res.getString("nombre_proveedor"));
 				Proveedor.setTelefono_proveedor(res.getString("telefono_proveedor"));
 				
@@ -96,62 +96,64 @@ public class ProveedorDAO {
 			System.out.println(e.getMessage());
 			System.out.println(e.getLocalizedMessage());
 		}
-		return listaDeProveedores();
+		return listaproveedores;
 	}
 	
-	//Permite consultar la lista de todos los Proveedors
-	public ArrayList<ProveedorVO> listaDeProveedores(){
-		//Lista que contendra el o los Proveedors
-		ArrayList<ProveedorVO> listaProveedores = new ArrayList<ProveedorVO>();
-		
-		//Instancia de la conexion
-		Conexion conex = new Conexion();
-		
-		try {
-			//prepare la sentencia en la base de datos
-			PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM proveedores");
+	
+	//Permite consultar la lista de todos los proveedores
+		public ArrayList<ProveedorVO> listaDeProveedores(){
+			//Lista que contendra el o los clientes
+			ArrayList<ProveedorVO> listaproveedores = new ArrayList<ProveedorVO>();
 			
-			//ejecute la sentencia
-			ResultSet res = consulta.executeQuery();
+			//Instancia de la conexion
+			Conexion conex = new Conexion();
 			
-			//cree un objeto para cada encontrado en la base de datos basado en la clase entidad con los datos encontrados
-			while (res.next()) {
-				ProveedorVO Proveedor = new ProveedorVO();
-				Proveedor.setNitproveedor(Integer.parseInt(res.getString("nitproveedor")));
-				Proveedor.setCiudad_proveedor(res.getString("ciudad_proveedor"));
-				Proveedor.setDireccion_proveedor(res.getString("direccion_Proveedor"));
-				Proveedor.setNombre_proveedor(res.getString("nombre_proveedor"));
-				Proveedor.setTelefono_proveedor(res.getString("telefono_proveedor"));
+			try {
+				//prepare la sentencia en la base de datos
+				PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM proveedores");
 				
-				listaProveedores.add(Proveedor);				
+				//ejecute la sentencia
+				ResultSet res = consulta.executeQuery();
+				
+				//cree un objeto para cada encontrado en la base de datos basado en la clase entidad con los datos encontrados
+				while (res.next()) {
+					ProveedorVO Proveedor = new ProveedorVO();
+					Proveedor.setNitproveedor(Integer.parseInt(res.getString("nitproveedor")));
+					Proveedor.setCiudad_proveedor(res.getString("ciudad_proveedor"));
+					Proveedor.setDireccion_proveedor(res.getString("direccion_proveedor"));
+					Proveedor.setNombre_proveedor(res.getString("nombre_proveedor"));
+					Proveedor.setTelefono_proveedor(res.getString("telefono_proveedor"));
+					
+					listaproveedores.add(Proveedor);
+							
+				}
+				
+				//Cerrar resultado, sentencia y conexion
+				res.close();
+				consulta.close();
+				conex.desconectar();
+				
+			} catch (SQLException e) {
+				// Si hay erroe en sql mostrarlo
+				System.out.println("------------------- ERROR --------------");
+				System.out.println("No se pudo consultar todos los clientes");
+				System.out.println(e.getMessage());
+				System.out.println(e.getErrorCode());
+			} 
+			catch (Exception e) {
+				// Mostar cualquier otro error
+				System.out.println("------------------- ERROR --------------");
+				System.out.println("No se pudo consultar todos los clientes");
+				System.out.println(e.getMessage());
+				System.out.println(e.getLocalizedMessage());
 			}
 			
-			//Cerrar resultado, sentencia y conexion
-			res.close();
-			consulta.close();
-			conex.desconectar();
-			
-		} catch (SQLException e) {
-			// Si hay erroe en sql mostrarlo
-			System.out.println("------------------- ERROR --------------");
-			System.out.println("No se pudo consultar todos los Proveedors");
-			System.out.println(e.getMessage());
-			System.out.println(e.getErrorCode());
-		} 
-		catch (Exception e) {
-			// Mostar cualquier otro error
-			System.out.println("------------------- ERROR --------------");
-			System.out.println("No se pudo consultar todos los Proveedors");
-			System.out.println(e.getMessage());
-			System.out.println(e.getLocalizedMessage());
+			return listaproveedores;
 		}
-		
-		return listaProveedores;
-	}
 	
 
-	//Permite la eliminacion de un Proveedor
-	public void eliminarProveedor(Integer nitproveedor){
+	//Permite la eliminacion de un cliente
+	public void eliminarProvedor(Integer nitproveedor){
 		
 		//Instancia de la conexion
 		Conexion conex = new Conexion();
@@ -161,7 +163,7 @@ public class ProveedorDAO {
 			Statement consulta = conex.getConnection().createStatement();
 			
 			//preparando sentencia a realizar
-			String sentencia = "DELETE from Proveedors where nitproveedor=" + nitproveedor + ";";
+			String sentencia = "DELETE from proveedores where nitproveedor=" + nitproveedor + ";";
 			
 			//Impresion de verificacion
 			System.out.println("Registrado " + sentencia);
@@ -199,12 +201,12 @@ public class ProveedorDAO {
 			Statement estatuto = conex.getConnection().createStatement();
 			
 			//String con la sentencia a ejecutar
-			String sentencia = "UPDATE Proveedores "
-					+ "SET telefono_proveedor = '"+user.getNitproveedor()+"',"
-					+ "ciudad_proveedor = '"+user.getCiudad_proveedor()+"',"
+			String sentencia = "UPDATE proveedores "
+					+ "SET ciudad_proveedor = '"+user.getCiudad_proveedor()+"',"
 					+ "direccion_proveedor = '"+user.getDireccion_proveedor()+"',"
-					+ "nombre_proveedor = '"+user.getNombre_proveedor()+"' "
-					+ "WHERE nitproveedor = "+user.getTelefono_proveedor()+";";
+					+ "nombre_proveedor = '"+user.getNombre_proveedor()+"',"
+					+ "telefono_proveedor = '"+user.getTelefono_proveedor()+"' "
+					+ "WHERE nitproveedor = "+user.getNitproveedor()+";";
 			
 			//ejecutando la sentencia
 			estatuto.executeUpdate(sentencia);
@@ -233,4 +235,3 @@ public class ProveedorDAO {
 	}
 
 }
-

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class ProveedorVO implements Serializable {
 	
-	//idntificador unico de las clases entidad
+	//identificador unico de las clases entidad
 	private static final long serialVersionUID = 1L;
 	
 	private Integer nitproveedor;
@@ -19,7 +19,7 @@ public class ProveedorVO implements Serializable {
 		return nitproveedor;
 	}
 	/**
-	 * @param nitproveedor the nitproveedor to set
+	 * @param nitproveedores the nitproveedor to set
 	 */
 	public void setNitproveedor(Integer nitproveedor) {
 		this.nitproveedor = nitproveedor;
@@ -37,13 +37,13 @@ public class ProveedorVO implements Serializable {
 		this.ciudad_proveedor = ciudad_proveedor;
 	}
 	/**
-	 * @return the direccion_proveedor
+	 * @return the direccion_cliente
 	 */
 	public String getDireccion_proveedor() {
 		return direccion_proveedor;
 	}
 	/**
-	 * @param direccion_proveedor the direccion_proveedor to set
+	 * @param direccion_cliente the direccion_cliente to set
 	 */
 	public void setDireccion_proveedor(String direccion_proveedor) {
 		this.direccion_proveedor = direccion_proveedor;
@@ -72,12 +72,7 @@ public class ProveedorVO implements Serializable {
 	public void setTelefono_proveedor(String telefono_proveedor) {
 		this.telefono_proveedor = telefono_proveedor;
 	}
-	/**
-	 * @return the serialversionuid
-	 */
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	
+	
+
 }
