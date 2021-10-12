@@ -83,9 +83,24 @@
 				
 			<div id="error2" class="alert alert-danger visually-hidden"
 				role="alert">Ingrese la cantidad a comprar</div>
+				
+			<div id="error3" class="alert alert-danger visually-hidden"
+				role="alert">Numero Consecutivo ya existe</div>
+				
+			<div id="error4" class="alert alert-danger visually-hidden"
+				role="alert">Numero de venta ya existe</div>	
+				
+			<div id="error5" class="alert alert-danger visually-hidden"
+				role="alert">Ingrese el codigo de venta</div>
 
 			<div id="correcto" class="alert alert-success visually-hidden"
 				role="alert">Consulta encontrada</div>
+				
+			<div id="correcto2" class="alert alert-success visually-hidden"
+				role="alert">Venta Registrada</div>
+			
+			<div id="correcto3" class="alert alert-success visually-hidden"
+				role="alert">Detalle de Venta confirmanda</div>
   
 
   <div class="column">
@@ -186,7 +201,8 @@
       <div class="w-100"></div>
   <div class="col grid-left" style="margin-left:12px"></div>
   <div class="col"></div>
-  <div class="col"></div>
+  <div class="col"><button style = "font-size:15px;" type="button" class="btn btn-success"
+						onclick="calcularTotal()"><i class="fas fa-check"></i>&nbsp&nbspCalcular Total</button></div>
   <div class="col center">Total Venta</div>
   <div class="col padding-right"><div class="form-floating grid-right style="height: 98px;"">
         <input type="text" class="form-control"  id="total_purchase" id="form-floating " placeholder="total_purchase" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Total" disabled>
@@ -194,7 +210,9 @@
 <div class="w-100"></div>
   <div class="col grid-left" style="margin-left:12px"></div>
   <div class="col"></div>
-  <div class="col"></div>
+  <div class="col"><button style = "font-size:15px;" type="button" class="btn btn-success"
+						onclick="registrarTotal()"><i class="fas fa-check"></i>&nbsp&nbspConfirmar Compra</button><button style = "font-size:15px;" type="button" class="btn btn-success"
+						onclick="registrardetalle()"><i class="fas fa-check"></i>&nbsp&nbspDetalles de Compra</button></div>
   <div class="col center">Total IVA</div>
   <div class="col padding-right"><div class="form-floating grid-right" style="height: 98px;">
         <input type="text" class="form-control"  id="total_tax" id="form-floating " placeholder="total_tax" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Total" disabled>
@@ -204,7 +222,7 @@
   <div class="col grid-left grid-button" style="margin-left:12px"></div>
   <div class="col grid-button"></div>
   <div class="col grid-button"><button style = "font-size:15px;" type="button" class="btn btn-success"
-						onclick="consultaTotal()"><i class="fas fa-check"></i>&nbsp&nbspConfirmar</button></div>
+						onclick="window.location.href='/listaventas.jsp'"><i class="fas fa-check"></i>&nbsp&nbspConsultar Ventas</button></div>
   <div class="col grid-button center"><span>Total con IVA</span></div>
   <div class="col grid-button padding-right"><div class="form-floating grid-right style="height: 98px;"">
         <input type="text" class="form-control"  id="total_final" id="form-floating " placeholder="total_final" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Total" disabled>
@@ -248,8 +266,6 @@ function consultarCliente() {
 if (cliente.toString()!=""){
 
 	document.getElementById("nombre_cliente").value = cliente[0].nombre_cliente;
-	
-	document.getElementById("cedula_cliente").value = "";
 
 
 } else {
@@ -288,8 +304,6 @@ if (producto.toString()!=""){
 
 	document.getElementById("result1").value = producto[0].nombre_producto;
 	document.getElementById("value1").value = producto[0].precio_venta;
-	
-	document.getElementById("producto1").value = "";
 
 
 } else {
@@ -328,8 +342,6 @@ if (producto.toString()!=""){
 
 	document.getElementById("result2").value = producto[0].nombre_producto;
 	document.getElementById("value2").value = producto[0].precio_venta;
-	
-	document.getElementById("producto2").value = "";
 
 
 } else {
@@ -368,8 +380,6 @@ if (producto.toString()!=""){
 
 	document.getElementById("result3").value = producto[0].nombre_producto;
 	document.getElementById("value3").value = producto[0].precio_venta;
-	
-	document.getElementById("producto3").value = "";
 
 
 } else {
@@ -383,33 +393,7 @@ if (producto.toString()!=""){
 }
 }
 
-function consultaTotal() {
-
-	  var cant1 = document.getElementById("quantity1").value;
-	  var unitPrice1 = document.getElementById("value1").value;
-	  var total1 = cant1 * unitPrice1;
-
-	  var cant2 = document.getElementById("quantity2").value;
-	  var unitPrice2 = document.getElementById("value2").value;
-	  var total2 = cant2 * unitPrice2;
-
-	  var cant3 = document.getElementById("quantity3").value;
-	  var unitPrice3 = document.getElementById("value3").value;
-	  var total3 = cant3 * unitPrice3;
-	  
-	  document.getElementById("total1").value = total1;
-	  document.getElementById("total2").value = total2;
-	  document.getElementById("total3").value = total3;
-
-	  var total_compra = total1 + total2 + total3;
-	  var total_iva = total_compra * 0.19;
-	  var total_final = total_compra + total_iva;
-	  document.getElementById("total_purchase").value = total_compra;
-	  document.getElementById("total_tax").value = total_iva;
-	  document.getElementById("total_final").value = total_final;
-	}
-
-function consultaTotal() {
+function calcularTotal() {
 
 	var element = document.getElementById("error");
 	element.classList.add("visually-hidden");
@@ -454,7 +438,147 @@ function consultaTotal() {
 		document.getElementById("total_tax").value = "";
 		document.getElementById("total_final").value = "";
 	}
+	  if (cant1<=0 || cant2<=0 || cant3<=0 ){
+			var element2 = document.getElementById("error2");
+			element2.classList.remove("visually-hidden");
+			
+			document.getElementById("total1").value = "";
+			document.getElementById("total2").value = "";
+			document.getElementById("total3").value = "";
+			document.getElementById("total_purchase").value = "";
+			document.getElementById("total_tax").value = "";
+			document.getElementById("total_final").value = "";
+		}
 	}
+
+function registrarTotal() {
+	
+	var y = document.getElementById("consecutivo").value;
+	var req = new XMLHttpRequest();
+	var coincidencia = false;
+	req.open('GET', 'http://localhost:8080/listaventas', false);
+	req.send(null);
+	var ventas=null;
+	if (req.status == 200)
+		ventas=JSON.parse(req.responseText);
+	  	console.log(JSON.parse(req.responseText));
+	  	
+	for (i = 0; i < ventas.length; i++) {
+		console.log(ventas[i].codigo_venta);
+		
+		if (ventas[i].codigo_venta ==y ) {
+			console.log(ventas[i].codigo_venta +" "+y);	
+			coincidencia =true
+			break;
+		}
+	}
+	console.log(coincidencia);	
+	
+	if (coincidencia==false){
+		var formData = new FormData();
+			formData.append("cedula_cliente", document.getElementById("cedula_cliente").value);
+			formData.append("ivaventa", document.getElementById("total_tax").value);
+			formData.append("total_venta", document.getElementById("total_purchase").value);
+			formData.append("valor_venta",document.getElementById("total_final").value);
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "http://localhost:8080/registrarventa");
+			
+		var element_error = document.getElementById("error3");
+		element_error.classList.add("visually-hidden");
+		var element_correct = document.getElementById("correcto2");
+		element_correct.classList.remove("visually-hidden");
+		
+
+			xhr.send(formData);
+
+	}else{
+		var element_error = document.getElementById("error3");
+		element_error.classList.remove("visually-hidden");
+		var element_correct = document.getElementById("correcto2");
+		element_correct.classList.add("visually-hidden");
+		
+	}	
+	
+}
+
+function registrardetalle(){
+	
+	if(document.getElementById("consecutivo").value != ""){
+		
+		var y = document.getElementById("consecutivo").value;
+		var req = new XMLHttpRequest();
+		var coincidencia = false;
+		req.open('GET', 'http://localhost:8080/listadetalleventas', false);
+		req.send(null);
+		var detalle=null;
+		if (req.status == 200)
+			detalle=JSON.parse(req.responseText);
+		  	console.log(JSON.parse(req.responseText));
+		  	
+		for (i = 0; i < detalle.length; i++) {
+			console.log(detalle[i].codigo_venta);
+			
+			if (detalle[i].codigo_venta ==y ) {
+				console.log(detalle[i].codigo_venta +" "+y);	
+				coincidencia =true
+				break;
+			}
+		}
+		console.log(coincidencia);	
+		
+		if (coincidencia==false){
+			var formData = new FormData();
+				formData.append("cantidad_producto1", document.getElementById("quantity1").value);
+				formData.append("cantidad_producto2", document.getElementById("quantity2").value);
+				formData.append("cantidad_producto3", document.getElementById("quantity3").value);
+				formData.append("codigo_producto1", document.getElementById("producto1").value);
+				formData.append("codigo_producto2", document.getElementById("producto2").value);
+				formData.append("codigo_producto3", document.getElementById("producto3").value);
+				formData.append("codigo_venta", document.getElementById("consecutivo").value);
+				formData.append("valor_total1",document.getElementById("total1").value);
+				formData.append("valor_total2",document.getElementById("total2").value);
+				formData.append("valor_total3",document.getElementById("total3").value);
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", "http://localhost:8080/registrardetalleventa");
+				
+			var element_error = document.getElementById("error4");
+			element_error.classList.add("visually-hidden");
+			var element_correct = document.getElementById("correcto3");
+			element_correct.classList.remove("visually-hidden");
+			
+			document.getElementById("quantity1").value = "";
+			document.getElementById("quantity2").value = "";
+			document.getElementById("quantity3").value = "";
+			document.getElementById("producto1").value = "";
+			document.getElementById("producto2").value = "";
+			document.getElementById("producto3").value = "";
+			document.getElementById("total1").value = "";
+			document.getElementById("total2").value = "";
+			document.getElementById("total3").value = "";
+			document.getElementById("consecutivo").value = "";
+			document.getElementById("cedula_cliente").value = "";
+			document.getElementById("total_tax").value = "";
+			document.getElementById("total_purchase").value = "";
+			document.getElementById("total_final").value = "";
+				xhr.send(formData);
+
+		}else{
+			var element_error = document.getElementById("error4");
+			element_error.classList.remove("visually-hidden");
+			var element_correct = document.getElementById("correcto3");
+			element_correct.classList.add("visually-hidden");
+			
+		}
+
+		
+	}else {
+		
+		var element_error_text = document.getElementById("error5");
+		element_error_text.classList.remove("visually-hidden");
+	}
+	
+		
+}
 
 	</script>  
 

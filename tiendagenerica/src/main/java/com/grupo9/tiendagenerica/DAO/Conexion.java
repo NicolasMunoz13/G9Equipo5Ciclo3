@@ -5,13 +5,13 @@ import java.sql.*;
 public class Conexion {
 
 	//Parametros de conexion
-	static String nombre_base_datos = "tiendagenerica";
+	static String nombre_base_datos = "g9e5";
 	//root
-	static String usuariobd = "root";
+	static String usuariobd = "admin";
 	//clave
-	static String clavebd = "mintic";
+	static String clavebd = "minticroca";
 	//Conexion localhost
-	static String url = "jdbc:mysql://127.0.0.1/" + nombre_base_datos;
+	static String url = "jdbc:mysql://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/" + nombre_base_datos;
 	
 	//Objeto sin inicializar conexion
 	Connection connection = null;
