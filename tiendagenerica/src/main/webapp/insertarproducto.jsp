@@ -59,7 +59,7 @@
           <a class="nav-link active" aria-current="page" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><h3>Ventas</h3></a>
+          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><h3>Reportes</h3></a>

@@ -86,7 +86,7 @@
           <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><h3>Ventas</h3></a>
+          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><h3>Reportes</h3></a>
@@ -110,7 +110,7 @@
      <div id="flex-child-element">
       <button type="button" class="btn btn-primary btn-lg" onclick= "window.location.href='/insertarproveedor.jsp'">Crear Proveedor</button>
       <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='/consultarproveedor.jsp'">Consultar Proveedor</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick= "window.location.href='/actulizarproveedor.jsp'">Actualizar Proveedor</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick= "window.location.href='/actualizarproveedor.jsp'">Actualizar Proveedor</button>
       <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarproveedor.jsp'">Borrar Proveedor</button>
       <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaproveedores.jsp'">Lista de Proveedores</button>
     </div>
