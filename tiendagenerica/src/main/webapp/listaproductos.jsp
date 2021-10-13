@@ -81,7 +81,7 @@
           <a class="nav-link " href="listaclientes.jsp"><h3>Clientes</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  href="#"><h3>Proveedores</h3></a>
+          <a class="nav-link"  href="listaproveedores.jsp"><h3>Proveedores</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="insertarproducto.jsp"><h3>Productos</h3></a>
@@ -90,7 +90,7 @@
           <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><h3>Reportes</h3></a>
+          <a class="nav-link" href=reportes.jsp#"><h3>Reportes</h3></a>
         </li>
       </ul>
     </div>

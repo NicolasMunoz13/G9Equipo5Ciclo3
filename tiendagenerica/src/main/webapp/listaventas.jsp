@@ -89,7 +89,7 @@
           <a class="nav-link active" href="calculoventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><h3>Reportes</h3></a>
+          <a class="nav-link" href="reportes.jsp"><h3>Reportes</h3></a>
         </li>
       </ul>
     </div>
