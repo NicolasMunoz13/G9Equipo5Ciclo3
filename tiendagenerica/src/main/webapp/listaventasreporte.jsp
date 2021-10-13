@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Detalle de Ventas</title>
+	<title>Ventas</title>
 	
   <!-- Estilos Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -25,27 +25,21 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script>
-  var baseurl = "http://localhost:8080/listadetalleventas";
+	var baseurl = "http://localhost:8080/listaventas";
 	function loadventas() {
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", baseurl, true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var ventas = JSON.parse(xmlhttp.responseText);
-				var tbltop = "<table class='table table-dark table-striped'><tr><th>Codigo Detalle Venta</th><th>Cantidad producto 1</th><th>Cantidad producto 2</th><th>Cantidad producto 3</th><th>Codigo producto 1</th><th>Codigo producto 2</th><th>Codigo producto 3</th><th>Codigo Venta</th><th>Valor total 1</th><th>Valor total 2</th><th>Valor Total 3</th></tr>";
+				var tbltop = "<table class='table table-dark table-striped'><tr><th>Codigo Venta</th><th>Cedula Cliente</th><th>Iva</th><th>Total sin Iva</th><th>Valor Total con Iva</th></tr>";
 				var main = "";
 				for (i = 0; i < ventas.length; i++) {
-					main += "<tr><td>" + ventas[i].codigo_detalle_venta
-							+ "</td><td>" + ventas[i].cantidad_producto1
-							+ "</td><td>" + ventas[i].cantidad_producto2
-							+ "</td><td>" + ventas[i].cantidad_producto3
-							+ "</td><td>" + ventas[i].codigo_producto1
-							+ "</td><td>" + ventas[i].codigo_producto2
-							+ "</td><td>" + ventas[i].codigo_producto3
-							+ "</td><td>" + ventas[i].codigo_venta
-							+ "</td><td>" + ventas[i].valor_total1
-							+ "</td><td>" + ventas[i].valor_total2 + "</td><td>"
-							+ ventas[i].valor_total3 + "</td></tr>";
+					main += "<tr><td>" + ventas[i].codigo_venta
+							+ "</td><td>" + ventas[i].cedula_cliente
+							+ "</td><td>" + ventas[i].ivaventa
+							+ "</td><td>" + ventas[i].total_venta + "</td><td>"
+							+ ventas[i].valor_venta + "</td></tr>";
 				}
 				var tblbottom = "</table>";
 				var tbl = tbltop + main + tblbottom;
@@ -92,10 +86,10 @@
           <a class="nav-link " href="listaproductos.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="calculoventas.jsp"><h3>Ventas</h3></a>
+          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="reportes.jsp"><h3>Reportes</h3></a>
+          <a class="nav-link active" href="reportes.jsp"><h3>Reportes</h3></a>
         </li>
       </ul>
     </div>
@@ -114,6 +108,8 @@
     	<div class="col align-self-center" id="ventasinfo">
 					
 					</div>
+		
+		<button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/detalleventas.jsp'">Consultar Detalle De Ventas</button>
 		
 
   </form>
