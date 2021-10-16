@@ -47,7 +47,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link active" aria-current="page" href="listausuarios.jsp"><h3> <i class="fas fa-user-alt"></i> Usuarios</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="listaclientes.jsp" ><h3>Clientes</h3></a>
@@ -59,7 +59,7 @@
           <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
+          <a class="nav-link" href="listaventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="reportes.jsp"><h3>Reportes</h3></a>
@@ -71,7 +71,7 @@
 
 <!-- Zona de ingreso de ingreso de informacio -->
 <div class="full-form">
-  <center>
+ 
   <div id="error" class="alert alert-danger visually-hidden"
 				role="alert">Error al eliminar el usuario, verifique que 
 				exista un usuario con la cedula ingresada</div>
@@ -80,10 +80,12 @@
 				role="alert">Usuario eliminado con exito</div>
 			
 	<div style="padding-left: 5px">
+	 <center>
 		<h1>
 			<i class="fas fa-skull-crossbones"></i> Escriba la cedula del usuario a eliminar
 		</h1>
-		<div class="container">
+	</center>
+	<div class="container">
 			
 				
   <form class="row g-3" id="flex-parent-element" type="" method="">
@@ -107,11 +109,11 @@
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarusuario.jsp'">Crear </button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarusuario.jsp'">Consultar Usuario</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarusuario.jsp'">Actualizar Usuario</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarusuario.jsp'">Borrar Usuario</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listausuarios.jsp'">Lista de Usuarios</button>
+      <button type="button"  class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/insertarusuario.jsp'"><i class="far fa-user"></i> Crear Usuario </button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/consultarusuario.jsp'"> <i class="fas fa-search"></i> Consultar Usuario</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/actualizarusuario.jsp'"> <i class="far fa-edit"></i> Actualizar Usuario</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/eliminarusuario.jsp'"> <i class="fas fa-trash-alt"></i> Borrar Usuario</button>
+      <button type="button" class="btn btn-info btn-lg"onclick="window.location.href='<%=request.getContextPath()%>/listausuarios.jsp'"><i class="fas fa-clipboard-list"></i> Lista de Usuarios</button>
     </div>
   </div>
 </div>
@@ -124,51 +126,59 @@
 
 
 <script>
+		function eliminar() {
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+	
+			var y = document.getElementById("cedula_usuario").value;
+			var req = new XMLHttpRequest();
+			var coincidencia = false;
+			req.open('GET',baseUrl+'/listausuarios',false);
+			req.send(null);
+			var usuarios = null;
+			if (req.status == 200)
+				usuarios = JSON.parse(req.responseText);
+			console.log(JSON.parse(req.responseText));
 
-function eliminar() {
-	var y = document.getElementById("cedula_usuario").value;
-	var req = new XMLHttpRequest();
-	var coincidencia = false;
-	req.open('GET', 'http://localhost:8080/listausuarios', false);
-	req.send(null);
-	var usuarios = null;
-	if (req.status == 200)
-		usuarios = JSON.parse(req.responseText);
-	console.log(JSON.parse(req.responseText));
-	for (i = 0; i < usuarios.length; i++) {
-		
-		console.log(usuarios[i].cedula_usuario);
-		if (usuarios[i].cedula_usuario == y) {
-			console.log(usuarios[i].cedula_usuario + " " + y);
-			coincidencia = true
-			break;
+			for (i = 0; i < usuarios.length; i++) {
+
+				console.log(usuarios[i].cedula_usuario);
+				if (usuarios[i].cedula_usuario == y) {
+					console.log(usuarios[i].cedula_usuario + " " + y);
+					coincidencia = true;
+					break;
+				}
+			}
+			console.log(coincidencia);
+
+			if (coincidencia != false) {
+				var cedula = document.getElementById("cedula_usuario").value;
+
+				var xhr = new XMLHttpRequest();
+				xhr.open("DELETE",baseUrl+"/eliminarusuario?cedula_usuario="+ cedula);
+
+				var element = document.getElementById("error");
+				element.classList.add("visually-hidden");
+
+				var element2 = document.getElementById("correcto");
+				element2.classList.remove("visually-hidden");
+
+				document.getElementById("cedula_usuario").value = "";
+				xhr.send();
+
+			} else {
+				var element = document.getElementById("error");
+				element.classList.remove("visually-hidden");
+
+				var element2 = document.getElementById("correcto");
+				element2.classList.add("visually-hidden");
+
+				document.getElementById("cedula_usuario").value = "";
+				;
+			}
 		}
-	}
-	console.log(coincidencia);
-	if (coincidencia != false) {
-		var cedula=document.getElementById("cedula_usuario").value;
-		
-		var xhr = new XMLHttpRequest();
-		xhr.open("DELETE", "http://localhost:8080/eliminarusuario?cedula_usuario="+cedula);
-		
-		var element = document.getElementById("error");
-		element.classList.add("visually-hidden");
-		
-		var element2 = document.getElementById("correcto");
-		element2.classList.remove("visually-hidden");
-		document.getElementById("cedula_usuario").value = "";
-		xhr.send();
-	} else {
-		var element = document.getElementById("error");
-		element.classList.remove("visually-hidden");
-		
-		var element2 = document.getElementById("correcto");
-		element2.classList.add("visually-hidden");
-		
-		document.getElementById("cedula_usuario").value = "";;
-	}
-}
-</script>
+	</script>
+
 </body>
 
 </html>   

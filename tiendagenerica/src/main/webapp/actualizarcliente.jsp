@@ -47,10 +47,10 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link"  href="listausuarios.jsp"><h3>Usuarios</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="listaclientes.jsp" ><h3>Clientes</h3></a>
+          <a class="nav-link active" aria-current="page" href="listaclientes.jsp" ><h3> <i class="fas fa-id-card-alt"></i> Clientes</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
@@ -59,7 +59,7 @@
           <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
+          <a class="nav-link" href="listaventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="reportes.jsp"><h3>Reportes</h3></a>
@@ -71,19 +71,20 @@
 
 <!-- Zona de ingreso de ingreso de informacio -->
 <div class="full-form">
-  <center>
+  
   <div id="error" class="alert alert-danger visually-hidden"
-				role="alert">Error al actualizar el cliente, verifique que la cedula y usuario dados sean validos</div>
+				role="alert">Error al actualizar el cliente, verifique que la cedula sea valida</div>
 
 			<div id="correcto" class="alert alert-success visually-hidden"
 				role="alert">Cliente actualizado con exito</div>
 				
 <div style="padding-left: 5px">
+<center>
 		<h1>
 			Recuerde que debe ingresar la cedula modificar los otros datos
 		</h1>
 		<div class="container">
-				
+</center>		
 				
   <form class="row g-3" id="flex-parent-element" type="" method="">
     <div class="row">
@@ -139,11 +140,11 @@
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarcliente.jsp'">Crear Usuario</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarcliente.jsp'">Consultar Usuario</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarcliente.jsp'" >Actualizar Usuario</button>
-       <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarcliente.jsp'">Borrar Cliente</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listacliente.jsp'">Lista de Usuarios</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/insertarcliente.jsp'">Crear Cliente</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/consultarcliente.jsp'">Consultar Cliente</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/actualizarcliente.jsp'" >Actualizar Cliente</button>
+       <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/eliminarcliente.jsp'">Borrar Cliente</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/listaclientes.jsp'">Lista de Clientes</button>
     </div>
   </div>
 </div>
@@ -157,10 +158,13 @@
 <script>
 		function actualizar() {
 			
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+			
 			var y = document.getElementById("cedula_cliente").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/listaclientes', false);
+			req.open('GET', baseUrl+'/listaclientes', false);
 			req.send(null);
 			var clientes=null;
 			if (req.status == 200)
@@ -190,7 +194,7 @@
 				formData.append("email_cliente",
 						document.getElementById("email_cliente").value);
 				var xhr = new XMLHttpRequest();
-				xhr.open("PUT", "http://localhost:8080/actualizarcliente");
+				xhr.open("PUT", baseUrl+"/actualizarcliente");
 				var element = document.getElementById("error");
 				element.classList.add("visually-hidden");
 				var element2 = document.getElementById("correcto");

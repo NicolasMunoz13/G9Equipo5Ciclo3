@@ -32,7 +32,7 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Prodcutos</div>
+		<div class="sticky-lg-top">Tienda de Productos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->
@@ -47,7 +47,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link active" aria-current="page" href="listausuarios.jsp"><h3> <i class="fas fa-user-alt"></i> Usuarios</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="listaclientes.jsp" ><h3>Clientes</h3></a>
@@ -59,7 +59,7 @@
           <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
+          <a class="nav-link" href="listaventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="reportes.jsp"><h3>Reportes</h3></a>
@@ -71,7 +71,7 @@
 
 <!-- Zona de ingreso de ingreso de informacio -->
 <div class="full-form">
-  <center>
+  
   <div id="error" class="alert alert-danger visually-hidden"
 					role="alert">Error en busqueda de usuario, el usuario no existe</div>
 					
@@ -93,6 +93,11 @@
       <br/>
       <br/>
     
+    
+    	<button type="button" class="btn btn-warning" onclick="enviar()">
+				<i class="fas fa-edit"></i> Buscar Usuario
+			</button>
+	
       <div id="user-pass-info">
         <div class="form-floating">      
         <input type="text" class="form-control" class="input-field" id="user" id="form-floating " placeholder=" Usuario" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" disabled="disabled" required>
@@ -130,11 +135,11 @@
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarusuario.jsp'">Crear Nuevo Usuario</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="enviar()">Consultar Usuario</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarusuario.jsp'">Actualizar Usuario</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarusuario.jsp'">Borrar Usuario</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listausuarios.jsp'">Lista de Usuarios</button>
+     <button type="button"  class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/insertarusuario.jsp'"><i class="far fa-user"></i> Crear Usuario </button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/consultarusuario.jsp'"> <i class="fas fa-search"></i> Consultar Usuario</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/actualizarusuario.jsp'"> <i class="far fa-edit"></i> Actualizar Usuario</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/eliminarusuario.jsp'"> <i class="fas fa-trash-alt"></i> Borrar Usuario</button>
+      <button type="button" class="btn btn-info btn-lg"onclick="window.location.href='<%=request.getContextPath()%>/listausuarios.jsp'"><i class="fas fa-clipboard-list"></i> Lista de Usuarios</button>
     </div>
   </div>
 </div>
@@ -146,52 +151,53 @@
 </div>
 
 <script>
-function enviar() {
+		function enviar() {
 
-	
-	var req = new XMLHttpRequest();
-	var coincidencia = false;
-	var user=   document.getElementById("usersearch").value;
-	req.open('GET', 'http://localhost:8080/consultarusuario?usuario='+user, false);
-	req.send(null);
-	var usuario = null;
-	if (req.status == 200)
-		usuario = JSON.parse(req.responseText);
-	console.log(JSON.parse(req.responseText));
-	
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/"
+					+ getUrl.pathname.split('/')[1];
 
+			var req = new XMLHttpRequest();
+			var coincidencia = false;
+			var user = document.getElementById("usersearch").value;
+			req.open('GET',baseUrl+'/consultarusuario?usuario='+ user, false);
+			req.send(null);
+			var usuario = null;
+			if (req.status == 200)
+				usuario = JSON.parse(req.responseText);
+			console.log(JSON.parse(req.responseText));
 
-	var element = document.getElementById("error");
-	element.classList.add("visually-hidden");
-	var element2 = document.getElementById("correcto");
-	element2.classList.remove("visually-hidden");
-	
-	console.log(usuario.toString());
-	
-if (usuario.toString()!=""){
+			var element = document.getElementById("error");
+			element.classList.add("visually-hidden");
+			var element2 = document.getElementById("correcto");
+			element2.classList.remove("visually-hidden");
 
-	document.getElementById("cedula_usuario").value = usuario[0].cedula_usuario;
-	document.getElementById("email_usuario").value = usuario[0].email_usuario;
-	document.getElementById("nombre_usuario").value = usuario[0].nombre_usuario;
-	document.getElementById("password").value = usuario[0].password;
-	document.getElementById("user").value = usuario[0].usuario;
-	
-	document.getElementById("usersearch").value = "";
+			console.log(usuario.toString());
 
+			if (usuario.toString() != "") {
 
-} else {
-	var element = document.getElementById("error");
-	element.classList.remove("visually-hidden");
-	var element2 = document.getElementById("correcto");
-	element2.classList.add("visually-hidden");
-	document.getElementById("cedula_usuario").value = "";
-	document.getElementById("email_usuario").value = "";
-	document.getElementById("nombre_usuario").value = "";
-	document.getElementById("password").value = "";
-	document.getElementById("user").value = "";
-}
-}
-	</script>  
+				document.getElementById("cedula_usuario").value = usuario[0].cedula_usuario;
+				document.getElementById("email_usuario").value = usuario[0].email_usuario;
+				document.getElementById("nombre_usuario").value = usuario[0].nombre_usuario;
+				document.getElementById("password").value = usuario[0].password;
+				document.getElementById("user").value = usuario[0].usuario;
+
+				document.getElementById("usersearch").value = "";
+
+			} else {
+				var element = document.getElementById("error");
+				element.classList.remove("visually-hidden");
+				var element2 = document.getElementById("correcto");
+				element2.classList.add("visually-hidden");
+				document.getElementById("cedula_usuario").value = "";
+				document.getElementById("email_usuario").value = "";
+				document.getElementById("nombre_usuario").value = "";
+				document.getElementById("password").value = "";
+				document.getElementById("user").value = "";
+			}
+		}
+	</script>
+ 
 </body>
 
 </html>

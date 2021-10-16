@@ -109,11 +109,16 @@
 		//trayendo texto de input de password
 		var y = document.getElementById("inputpass").value;
 		//url de la api 
-		var baseurl = "http://localhost:8080/listausuarios";
+		<!--var baseurl = "http://localhost:8080/listausuarios";-->
 		//creando un objeto de manipulacion de solicitudes
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//" + getUrl.host + "/"+ getUrl.pathname.split('/')[1];
 		var xmlhttp = new XMLHttpRequest();
+		
+		
 		//abriendo la api
-		xmlhttp.open("GET", baseurl, true);
+		xmlhttp.open("GET", baseUrl + "/listausuarios", true);
+		<!--xmlhttp.open("GET", baseurl, true);-->
 		//funcion interna que compara la información
 		xmlhttp.onreadystatechange = function() {
 			//si se obtiene un 200 (Conexion correcta)

@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Infomacion de Usuario</title>
+	<title>Ingresar nuevo Usuario</title>
 	
   <!-- Estilos Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -32,7 +32,7 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Prodcutos</div>
+		<div class="sticky-lg-top">Tienda de Productos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->
@@ -47,19 +47,19 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link active" aria-current="page" href="listausuarios.jsp"><h3> <i class="fas fa-user-alt"></i> Usuarios</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="listaclientes.jsp" ><h3>Clientes</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><h3>Proveedores</h3></a>
+          <a class="nav-link" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href=insertarproducto.jsp#"><h3>Productos</h3></a>
+          <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
+          <a class="nav-link" href="listaventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="reportes.jsp"><h3>Reportes</h3></a>
@@ -116,15 +116,20 @@
         <label for="form-floating">&nbsp&nbsp<i class="fas fa-at"></i>&nbsp&nbspCorreo Electronico</label>
       </div>
     </div>
+    
+      <button type="button" class="btn btn-warning" onclick="validacion(); enviar()">
+		<i class="fas fa-edit"></i> Registrar Nuevo Usuario
+	</button>
+    
     </div>
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="validacion(); enviar()">Crear Nuevo Usuario</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarusuario.jsp'">Consultar Usuario</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarusuario.jsp'">Actualizar Usuario</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarusuario.jsp'">Borrar Usuario</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listausuarios.jsp'">Lista de Usuarios</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick=="window.location.href='<%=request.getContextPath()%>/insertarusuario.jsp'"> <i class="fas fa-search"></i> Crear Usuario</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/consultarusuario.jsp'"> <i class="fas fa-search"></i> Consultar Usuario</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/actualizarusuario.jsp'"> <i class="far fa-edit"></i> Actualizar Usuario</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/eliminarusuario.jsp'"> <i class="fas fa-trash-alt"></i> Borrar Usuario</button>
+      <button type="button" class="btn btn-info btn-lg"onclick="window.location.href='<%=request.getContextPath()%>/listausuarios.jsp'"><i class="fas fa-clipboard-list"></i> Lista de Usuarios</button>
     </div>
   </div>
 </div>
@@ -136,114 +141,82 @@
 </div>
 
 <script>
-function validacion(){
+		function enviar() {
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 	
-	if(document.getElementById('user').value==''){
-		alert('Por favor ingresa los datos faltantes');
-        document.getElementById("user").style.borderColor="red";
-        document.getElementById("user").style.borderWidth=2;
-        var element2 = document.getElementById("correcto");
-		element2.classList.remove("visually-hidden");
-        return false;
-	}
-	else if(document.getElementById('password').value==''){
-		alert('Por favor ingresa los datos faltantes');
-        document.getElementById("password").style.borderColor="red";
-        document.getElementById("password").style.borderWidth=2;
-        var element2 = document.getElementById("correcto");
-		element2.classList.remove("visually-hidden");
-        return false;
-	}
-	else if(document.getElementById('cedula_usuario').value==''){
-		alert('Por favor ingresa los datos faltantes');
-        document.getElementById("cedula_usuario").style.borderColor="red";
-        document.getElementById("cedula_usuario").style.borderWidth=2;
-        var element2 = document.getElementById("correcto");
-		element2.classList.remove("visually-hidden");
-        return false;
-	}
-	else if(document.getElementById('nombre_usuario').value==''){
-		alert('Por favor ingresa los datos faltantes');
-        document.getElementById("nombre_usuario").style.borderColor="red";
-        document.getElementById("nombre_usuario").style.borderWidth=2;
-        var element2 = document.getElementById("correcto");
-		element2.classList.remove("visually-hidden");
-        return false;
-	}
-	else if(document.getElementById('email_usuario').value==''){
-		alert('Por favor ingresa los datos faltantes');
-        document.getElementById("email_usuario").style.borderColor="red";
-        document.getElementById("email_usuario").style.borderWidth=2;
-        var element2 = document.getElementById("correcto");
-		element2.classList.remove("visually-hidden");
-        return false;
-	}
-}
-
-function enviar() {
-	var x = document.getElementById("user").value;
-	var y = document.getElementById("cedula_usuario").value;
-	var req = new XMLHttpRequest();
-	var coincidencia = false;
-	req.open('GET', 'http://localhost:8080/listausuarios', false);
-	req.send(null);
-	var usuarios=null;
-	if (req.status == 200)
-		usuarios=JSON.parse(req.responseText);
-	  	console.log(JSON.parse(req.responseText));
-	  	
-	for (i = 0; i < usuarios.length; i++) {
-		console.log(usuarios[i].usuario);
-		console.log(usuarios[i].cedula_usuario);
-		if (usuarios[i].usuario ===x ) {
-			console.log(usuarios[i].usuario +" "+x);	
-			coincidencia =true
-			break;
-		}
-		
-		if (usuarios[i].cedula_usuario ===y ) {
-			console.log(usuarios[i].cedula_usuario +" "+y);	
-			coincidencia =true
-			break;
-		}
-	}
-	console.log(coincidencia);	
-	
-	if (coincidencia==false){
-		var formData = new FormData();
-			formData.append("cedula_usuario", document.getElementById("cedula_usuario").value);
-			formData.append("email_usuario", document.getElementById("email_usuario").value);
-			formData.append("nombre_usuario", document.getElementById("nombre_usuario").value);
-			formData.append("password",document.getElementById("password").value);
-			formData.append("usuario",document.getElementById("user").value);
-			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "http://localhost:8080/registrarusuario");
 			
-		var element = document.getElementById("error");
-		element.classList.add("visually-hidden");
-		var element2 = document.getElementById("correcto");
-		element2.classList.remove("visually-hidden");
-		
-		document.getElementById("cedula_usuario").value = "";
-		document.getElementById("email_usuario").value = "";
-		document.getElementById("nombre_usuario").value = "";
-		document.getElementById("password").value = "";
-		document.getElementById("user").value = "";
-			xhr.send(formData);
+			var x = document.getElementById("user").value;
+			var y = document.getElementById("cedula_usuario").value;
+			var req = new XMLHttpRequest();
+			var coincidencia = false;
+			req.open('GET', baseUrl+'/listarusuarios', false);
+			req.send(null);
+			var usuarios = null;
+			if (req.status == 200)
+				usuarios = JSON.parse(req.responseText);
+			console.log(JSON.parse(req.responseText));
 
-	}else{
-		var element = document.getElementById("error");
-		element.classList.remove("visually-hidden");
-		var element2 = document.getElementById("correcto");
-		element2.classList.add("visually-hidden");
-		document.getElementById("cedula_usuario").value = "";
-		document.getElementById("email_usuario").value = "";
-		document.getElementById("nombre_usuario").value = "";
-		document.getElementById("password").value = "";
-		document.getElementById("user").value = "";
-	}	
-}
-	</script>  
+			for (i = 0; i < usuarios.length; i++) {
+				console.log(usuarios[i].usuario);
+				console.log(usuarios[i].cedula_usuario);
+				if (usuarios[i].usuario == x) {
+					console.log(usuarios[i].usuario + " " + x);
+					coincidencia = true
+					break;
+				}
+
+				if (usuarios[i].cedula_usuario == y) {
+					console.log(usuarios[i].cedula_usuario + " " + y);
+					coincidencia = true
+					break;
+				}
+			}
+
+			console.log(coincidencia);
+
+			if (coincidencia == false) {
+				var formData = new FormData();
+				formData.append("cedula_usuario", document
+						.getElementById("cedula_usuario").value);
+				formData.append("email_usuario", document
+						.getElementById("email_usuario").value);
+				formData.append("nombre_usuario", document
+						.getElementById("nombre_usuario").value);
+				formData.append("password",
+						document.getElementById("password").value);
+				formData.append("usuario",
+						document.getElementById("user").value);
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", baseUrl+"/registrarusuario");
+
+				var element = document.getElementById("error");
+				element.classList.add("visually-hidden");
+				var element2 = document.getElementById("correcto");
+				element2.classList.remove("visually-hidden");
+
+				document.getElementById("cedula_usuario").value = "";
+				document.getElementById("email_usuario").value = "";
+				document.getElementById("nombre_usuario").value = "";
+				document.getElementById("password").value = "";
+				document.getElementById("user").value = "";
+				xhr.send(formData);
+
+			} else {
+				var element = document.getElementById("error");
+				element.classList.remove("visually-hidden");
+				var element2 = document.getElementById("correcto");
+				element2.classList.add("visually-hidden");
+				document.getElementById("cedula_usuario").value = "";
+				document.getElementById("email_usuario").value = "";
+				document.getElementById("nombre_usuario").value = "";
+				document.getElementById("password").value = "";
+				document.getElementById("user").value = "";
+			}
+		}
+	</script>
+
+
 </body>
 
 </html>

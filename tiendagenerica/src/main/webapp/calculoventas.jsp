@@ -222,7 +222,7 @@
   <div class="col grid-left grid-button" style="margin-left:12px"></div>
   <div class="col grid-button"></div>
   <div class="col grid-button"><button style = "font-size:15px;" type="button" class="btn btn-success"
-						onclick="window.location.href='/listaventas.jsp'"><i class="fas fa-check"></i>&nbsp&nbspConsultar Ventas</button></div>
+						onclick="window.location.href='<%=request.getContextPath()%>/listaventas.jsp'"><i class="fas fa-check"></i>&nbsp&nbspConsultar Ventas</button></div>
   <div class="col grid-button center"><span>Total con IVA</span></div>
   <div class="col grid-button padding-right"><div class="form-floating grid-right style="height: 98px;"">
         <input type="text" class="form-control"  id="total_final" id="form-floating " placeholder="total_final" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Total" disabled>
@@ -246,10 +246,14 @@
 <script>
 function consultarCliente() {
 	
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/"
+			+ getUrl.pathname.split('/')[1];
+	
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
 	var cedula = document.getElementById("cedula_cliente").value;
-	req.open('GET', 'http://localhost:8080/consultarcliente?cedula_cliente='+cedula, false);
+	req.open('GET', baseUrl+'/consultarcliente?cedula_cliente='+cedula, false);
 	req.send(null);
 	var cliente = null;
 	if (req.status == 200)
@@ -281,10 +285,14 @@ if (cliente.toString()!=""){
 
 function consultarProducto1() {
 	
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/"
+			+ getUrl.pathname.split('/')[1];
+	
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
 	var codigo=   document.getElementById("producto1").value;
-	req.open('GET', 'http://localhost:8080/consultarproducto?codigo_producto='+codigo, false);
+	req.open('GET', baseUrl+'/consultarproducto?codigo_producto='+codigo, false);
 	req.send(null);
 	var producto = null;
 	if (req.status == 200)
@@ -319,10 +327,14 @@ if (producto.toString()!=""){
 
 function consultarProducto2() {
 	
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/"
+			+ getUrl.pathname.split('/')[1];
+	
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
 	var codigo=   document.getElementById("producto2").value;
-	req.open('GET', 'http://localhost:8080/consultarproducto?codigo_producto='+codigo, false);
+	req.open('GET', baseUrl+'/consultarproducto?codigo_producto='+codigo, false);
 	req.send(null);
 	var producto = null;
 	if (req.status == 200)
@@ -357,10 +369,14 @@ if (producto.toString()!=""){
 
 function consultarProducto3() {
 	
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/"
+			+ getUrl.pathname.split('/')[1];
+	
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
 	var codigo=   document.getElementById("producto3").value;
-	req.open('GET', 'http://localhost:8080/consultarproducto?codigo_producto='+codigo, false);
+	req.open('GET', baseUrl+'/consultarproducto?codigo_producto='+codigo, false);
 	req.send(null);
 	var producto = null;
 	if (req.status == 200)
@@ -453,10 +469,14 @@ function calcularTotal() {
 
 function registrarTotal() {
 	
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/"
+			+ getUrl.pathname.split('/')[1];
+	
 	var y = document.getElementById("consecutivo").value;
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
-	req.open('GET', 'http://localhost:8080/listaventas', false);
+	req.open('GET', baseUrl+'/listaventas', false);
 	req.send(null);
 	var ventas=null;
 	if (req.status == 200)
@@ -481,7 +501,7 @@ function registrarTotal() {
 			formData.append("total_venta", document.getElementById("total_purchase").value);
 			formData.append("valor_venta",document.getElementById("total_final").value);
 			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "http://localhost:8080/registrarventa");
+			xhr.open("POST", baseUrl+"/registrarventa");
 			
 		var element_error = document.getElementById("error3");
 		element_error.classList.add("visually-hidden");
@@ -503,12 +523,16 @@ function registrarTotal() {
 
 function registrardetalle(){
 	
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/"
+			+ getUrl.pathname.split('/')[1];
+	
 	if(document.getElementById("consecutivo").value != ""){
 		
 		var y = document.getElementById("consecutivo").value;
 		var req = new XMLHttpRequest();
 		var coincidencia = false;
-		req.open('GET', 'http://localhost:8080/listadetalleventas', false);
+		req.open('GET', baseUrl+'/listadetalleventas', false);
 		req.send(null);
 		var detalle=null;
 		if (req.status == 200)
@@ -539,7 +563,7 @@ function registrardetalle(){
 				formData.append("valor_total2",document.getElementById("total2").value);
 				formData.append("valor_total3",document.getElementById("total3").value);
 				var xhr = new XMLHttpRequest();
-				xhr.open("POST", "http://localhost:8080/registrardetalleventa");
+				xhr.open("POST", baseUrl+"/registrardetalleventa");
 				
 			var element_error = document.getElementById("error4");
 			element_error.classList.add("visually-hidden");

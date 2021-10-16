@@ -24,11 +24,20 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
+  
 <script>
-	var baseurl = "http://localhost:8080/listausuarios";
+
+	
+	<!--var baseurl = "http://localhost:8080/listausuarios";-->
+	
 	function loadusuarios() {
+		
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];		
+		
+		
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", baseurl, true);
+		xmlhttp.open("GET", baseUrl+'/listausuarios', true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var usuarios = JSON.parse(xmlhttp.responseText);
@@ -52,6 +61,7 @@
 		loadusuarios();
 	}
 </script>
+
   
 </head>
 
@@ -59,7 +69,7 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Prodcutos</div>
+		<div class="sticky-lg-top">Tienda de Productos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->
@@ -74,7 +84,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link active" aria-current="page" href="listausuarios.jsp"><h3> <i class="fas fa-user-alt"></i> Usuarios</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="listaclientes.jsp"><h3>Clientes</h3></a>
@@ -86,7 +96,7 @@
           <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
+          <a class="nav-link" href="listaventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="reportes.jsp"><h3>Reportes</h3></a>
@@ -98,21 +108,22 @@
 
 <!-- Zona de ingreso de ingreso de informacio -->
 <div class="full-form">
-  <center>
+  
   <form class="row g-3" id="flex-parent-element" type="" method="">
   
     <!--  Aqui es donde se autogenera la tabla basado en el script -->
+    
 					<div class="col align-self-center" id="usuariosinfo">
 					
 					</div>
 
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarusuario.jsp'">Crear Usuario</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarusuario.jsp'">Consultar Usuario</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarusuario.jsp'">Actualizar Usuario</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarusuario.jsp'">Borrar Usuario</button>
-      <button type="button" class="btn btn-info btn-lg"onclick="window.location.href='/listausuarios.jsp'">Lista de Usuarios</button>
+      <button type="button"  class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/insertarusuario.jsp'"><i class="far fa-user"></i> Crear Usuario </button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/consultarusuario.jsp'"> <i class="fas fa-search"></i> Consultar Usuario</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/actualizarusuario.jsp'"> <i class="far fa-edit"></i> Actualizar Usuario</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/eliminarusuario.jsp'"> <i class="fas fa-trash-alt"></i> Borrar Usuario</button>
+      <button type="button" class="btn btn-info btn-lg"onclick="window.location.href='<%=request.getContextPath()%>/listausuarios.jsp'"><i class="fas fa-clipboard-list"></i> Lista de Usuarios</button>
     </div>
   
 </div>

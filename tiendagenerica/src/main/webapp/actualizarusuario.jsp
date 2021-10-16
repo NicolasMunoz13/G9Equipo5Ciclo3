@@ -47,7 +47,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link active" aria-current="page" href="listausuarios.jsp"><h3> <i class="fas fa-user-alt"></i> Usuarios</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="listaclientes.jsp" ><h3>Clientes</h3></a>
@@ -59,7 +59,7 @@
           <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
+          <a class="nav-link" href="listaventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="reportes.jsp"><h3>Reportes</h3></a>
@@ -71,7 +71,7 @@
 
 <!-- Zona de ingreso de ingreso de informacio -->
 <div class="full-form">
-  <center>
+  
   <div id="error" class="alert alert-danger visually-hidden"
 				role="alert">Error al actualizar el usuario, verifique que la cedula y usuario dados sean validos</div>
 
@@ -79,11 +79,12 @@
 				role="alert">Usuario actualizado con exito</div>
 				
 <div style="padding-left: 5px">
+<center>
 		<h1>
 			Recuerde que debe ingresar la cedula y el usuario correctos para modificar los otros datos
 		</h1>
 		<div class="container">
-				
+</center>		
 				
   <form class="row g-3" id="flex-parent-element" type="" method="">
     <div class="row">
@@ -139,11 +140,11 @@
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarusuario.jsp'">Crear Usuario</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarusuario.jsp'">Consultar Usuario</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarsuario.jsp'" >Actualizar Usuario</button>
-       <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarusuario.jsp'">Borrar Cliente</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listausuarios.jsp'">Lista de Usuarios</button>
+      <button type="button"  class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/insertarusuario.jsp'"><i class="far fa-user"></i> Crear Usuario </button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/consultarusuario.jsp'"> <i class="fas fa-search"></i> Consultar Usuario</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/actualizarusuario.jsp'"> <i class="far fa-edit"></i> Actualizar Usuario</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/eliminarusuario.jsp'"> <i class="fas fa-trash-alt"></i> Borrar Usuario</button>
+      <button type="button" class="btn btn-info btn-lg"onclick="window.location.href='<%=request.getContextPath()%>/listausuarios.jsp'"><i class="fas fa-clipboard-list"></i> Lista de Usuarios</button>
     </div>
   </div>
 </div>
@@ -153,19 +154,25 @@
 </center>
 
 </div>
-
+			
+			
 <script>
 		function actualizar() {
+			
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+	
 			var x = document.getElementById("user").value;
 			var y = document.getElementById("cedula_usuario").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/listausuarios', false);
+			req.open('GET', baseUrl+'/listausuarios', false);
 			req.send(null);
 			var usuarios = null;
 			if (req.status == 200)
 				usuarios = JSON.parse(req.responseText);
 			console.log(JSON.parse(req.responseText));
+
 			for (i = 0; i < usuarios.length; i++) {
 				console.log(usuarios[i].usuario);
 				console.log(usuarios[i].cedula_usuario);
@@ -174,6 +181,7 @@
 					coincidencia = true
 					break;
 				}
+
 				if (usuarios[i].cedula_usuario === y) {
 					console.log(usuarios[i].cedula_usuario + " " + y);
 					coincidencia = true
@@ -181,6 +189,7 @@
 				}
 			}
 			console.log(coincidencia);
+
 			if (coincidencia != false) {
 				var formData = new FormData();
 				formData.append("cedula_usuario", document
@@ -194,17 +203,20 @@
 				formData.append("usuario",
 						document.getElementById("user").value);
 				var xhr = new XMLHttpRequest();
-				xhr.open("PUT", "http://localhost:8080/actualizarusuarios");
+				xhr.open("PUT", baseUrl+"/actualizarusuarios");
+
 				var element = document.getElementById("error");
 				element.classList.add("visually-hidden");
 				var element2 = document.getElementById("correcto");
 				element2.classList.remove("visually-hidden");
+
 				document.getElementById("cedula_usuario").value = "";
 				document.getElementById("email_usuario").value = "";
 				document.getElementById("nombre_usuario").value = "";
 				document.getElementById("password").value = "";
 				document.getElementById("user").value = "";
 				xhr.send(formData);
+
 			} else {
 				var element = document.getElementById("error");
 				element.classList.remove("visually-hidden");
@@ -217,7 +229,8 @@
 				document.getElementById("user").value = "";
 			}
 		}
-	</script> 
+	</script>
+
 </body>
 
 </html>

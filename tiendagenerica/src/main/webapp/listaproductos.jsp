@@ -25,10 +25,13 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
 <script>
-	var baseurl = "http://localhost:8080/listarproductos";
+
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];		
+
 	function loadproductos() {
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", baseurl, true);
+		xmlhttp.open("GET", baseUrl+"/listarproductos", true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var productos = JSON.parse(xmlhttp.responseText);
@@ -109,9 +112,9 @@
 
   <div class="column">
      <div id="flex-child-element">
-     		 <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarproducto.jsp'">Cargar Inventario</button>
-           <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarproducto.jsp'">Consultar Producto</button>
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/listaproductos.jsp'">Lista de Productos</button>
+     		 <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/insertarproducto.jsp'">Cargar Inventario</button>
+           <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/consultarproducto.jsp'">Consultar Producto</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/listaproductos.jsp'">Lista de Productos</button>
     </div>
   
 </div>

@@ -32,7 +32,7 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Prodcutos</div>
+		<div class="sticky-lg-top">Tienda de Productos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->
@@ -47,10 +47,10 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link"  href="listausuarios.jsp"><h3>Usuarios</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="listaclientes.jsp"><h3>Clientes</h3></a>
+          <a class="nav-link active" aria-current="page" href="listaclientes.jsp"><h3> <i class="fas fa-id-card-alt"></i>Clientes</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
@@ -59,10 +59,10 @@
           <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
+          <a class="nav-link" href="#"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="reportes.jsp"><h3>Reportes</h3></a>
+          <a class="nav-link" href="#"><h3>Reportes</h3></a>
         </li>
       </ul>
     </div>
@@ -71,7 +71,7 @@
 
 <!-- Zona de ingreso de ingreso de informacio -->
 <div class="full-form">
-  <center>
+ 
   <div id="error" class="alert alert-danger visually-hidden"
 					role="alert">Error en busqueda de cliente, el usuario no existe</div>
 					
@@ -92,6 +92,12 @@
       <br/>
       <br/>
 
+
+	
+    	<button type="button" class="btn btn-warning" onclick="enviar()">
+				<i class="fas fa-edit"></i> Buscar Cliente
+			</button>
+	
       <div class="form-floating">
         <input type="text" class="form-control"  id="nombre_cliente" id="form-floating " placeholder="Nombre Cliente" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Nombre Cliente" disabled="disabled" required>
         <label for="form-floating">&nbsp&nbsp<i class="fas fa-user"></i>&nbsp&nbspNombre Cliente</label>
@@ -123,11 +129,11 @@
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarclientes.jsp'">Crear Nuevo Cliente</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="enviar()">Consultar Cliente</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarcliente.jsp'">Actualizar Cliente</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarcliente.jsp'">Borrar Cliente</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaclientes.jsp'">Lista de Clientes</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/insertarcliente.jsp'">Crear Nuevo Cliente</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/consultarcliente.jsp'">Consultar Cliente</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/actualizarcliente.jsp'">Actualizar Cliente</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/eliminarcliente.jsp'">Borrar Cliente</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/listaclientes.jsp'">Lista de Clientes</button>
     </div>
   </div>
 </div>
@@ -141,11 +147,14 @@
 <script>
 function enviar() {
 
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/"
+			+ getUrl.pathname.split('/')[1];
 	
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
 	var cedula=   document.getElementById("cedula_cliente").value;
-	req.open('GET', 'http://localhost:8080/consultarcliente?cedula_cliente='+cedula, false);
+	req.open('GET', baseUrl+'/consultarcliente?cedula_cliente='+cedula, false);
 	req.send(null);
 	var cliente = null;
 	if (req.status == 200)

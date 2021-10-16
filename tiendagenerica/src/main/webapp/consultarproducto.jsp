@@ -138,9 +138,9 @@
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarproducto.jsp'">Cargar Inventario</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/consultarproducto.jsp'">Consultar Producto</button>
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/listaproductos.jsp'">Lista de Productos</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/insertarproducto.jsp'">Cargar Inventario</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/consultarproducto.jsp'">Consultar Producto</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/listaproductos.jsp'">Lista de Productos</button>
     </div>
   </div>
 </div>
@@ -154,11 +154,14 @@
 <script>
 function enviar() {
 
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+
 	
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
 	var codigo=   document.getElementById("codigo_producto").value;
-	req.open('GET', 'http://localhost:8080/consultarproducto?codigo_producto='+codigo, false);
+	req.open('GET', baseUrl+'/consultarproducto?codigo_producto='+codigo, false);
 	req.send(null);
 	var producto = null;
 	if (req.status == 200)

@@ -25,10 +25,14 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script>
-	var baseurl = "http://localhost:8080/listaventas";
+  
+  	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+	
+	
 	function loadventas() {
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", baseurl, true);
+		xmlhttp.open("GET", baseUrl+"/listaventas", true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var ventas = JSON.parse(xmlhttp.responseText);
@@ -109,7 +113,7 @@
 					
 					</div>
 		
-		<button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/detalleventas.jsp'">Consultar Detalle De Ventas</button>
+		<button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/detalleventas.jsp'">Consultar Detalle De Ventas</button>
 		
 
   </form>

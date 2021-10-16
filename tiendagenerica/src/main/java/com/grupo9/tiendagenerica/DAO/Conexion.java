@@ -1,9 +1,13 @@
 package com.grupo9.tiendagenerica.DAO;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class Conexion {
-
+	
 	//Parametros de conexion
 	static String nombre_base_datos = "g9e5";
 	//root
@@ -11,7 +15,7 @@ public class Conexion {
 	//clave
 	static String clavebd = "minticroca";
 	//Conexion localhost
-	static String url = "jdbc:mysql://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/" + nombre_base_datos;
+	static String url = "jdbc:mariadb://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/" + nombre_base_datos;
 	
 	//Objeto sin inicializar conexion
 	Connection connection = null;
@@ -21,7 +25,7 @@ public class Conexion {
 		
 		try {
 			//Obtener el driver de para mysql
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.mariadb.jdbc.Driver");
 			//Obtener la conexion
 			connection = DriverManager.getConnection(url, usuariobd, clavebd);
 			//Si hay conextion correcta, mostrar informacion en consola

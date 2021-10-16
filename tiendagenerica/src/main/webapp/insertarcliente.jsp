@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Infomacion de Cliente</title>
+	<title>Agregar nuevo Cliente</title>
 	
   <!-- Estilos Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -32,7 +32,7 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Prodcutos</div>
+		<div class="sticky-lg-top">Tienda de Productos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->
@@ -47,19 +47,21 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link"  href="listausuarios.jsp"><h3>Usuarios</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="listaclientes.jsp"><h3>Clientes</h3></a>
+          <a class="nav-link active" aria-current="page"  href="listaclientes.jsp">  <h3><i class="fas fa-id-card-alt"></i>
+
+           Clientes</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="listaproveedores.jasp"><h3>Proveedores</h3></a>
+          <a class="nav-link" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
+          <a class="nav-link" href="listaventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="reportes.jsp"><h3>Reportes</h3></a>
@@ -73,7 +75,7 @@
 <div class="full-form">
   <center>
   <div id="error" class="alert alert-danger visually-hidden"
-					role="alert">Error al crear el cliente, verifique que no exista un usuario con la cedula y usuario dados</div>
+					role="alert">Error al crear el cliente, verifique que no exista un cliente con la cedula ingresada</div>
 					
 			<div id="correcto" class="alert alert-success visually-hidden"
 				role="alert">Cliente creado con exito</div>
@@ -116,15 +118,20 @@
         <label for="form-floating">&nbsp&nbsp<i class="fas fa-at"></i>&nbsp&nbspCorreo Electronico</label>
       </div>
     </div>
+    
+     <button type="button" class="btn btn-warning" onclick="enviar()">
+		<i class="fas fa-edit"></i> Registrar Nuevo Cliente
+	</button>
+    
     </div>
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="enviar()">Crear Nuevo Cliente</button>
-      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='/consultarcliente.jsp'">Consultar Cliente</button>
-      <button type="button" class="btn btn-warning btn-lg"onclick="window.location.href='/actualizarcliente.jsp'">Actualizar Cliente</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarcliente.jsp'">Borrar Cliente</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaclientes.jsp'">Lista de Clientes</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/insertarcliente.jsp'">Crear Cliente</button>
+      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/consultarcliente.jsp'">Consultar Cliente</button>
+      <button type="button" class="btn btn-warning btn-lg"onclick="window.location.href='<%=request.getContextPath()%>/actualizarcliente.jsp'">Actualizar Cliente</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/eliminarcliente.jsp'">Borrar Cliente</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/listaclientes.jsp'">Lista de Clientes</button>
     </div>
   </div>
 </div>
@@ -137,10 +144,14 @@
 
 <script>
 function enviar() {
+	
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+	
 	var y = document.getElementById("cedula_cliente").value;
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
-	req.open('GET', 'http://localhost:8080/listaclientes', false);
+	req.open('GET', baseUrl+'/listaclientes', false);
 	req.send(null);
 	var clientes=null;
 	if (req.status == 200)
@@ -166,7 +177,7 @@ function enviar() {
 			formData.append("telefono_cliente",document.getElementById("telefono_cliente").value);
 			formData.append("email_cliente",document.getElementById("email_cliente").value);
 			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "http://localhost:8080/registrarcliente");
+			xhr.open("POST", baseUrl+"/registrarcliente");
 			
 		var element = document.getElementById("error");
 		element.classList.add("visually-hidden");
