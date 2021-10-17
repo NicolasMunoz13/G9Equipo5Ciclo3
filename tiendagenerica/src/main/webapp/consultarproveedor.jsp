@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -32,14 +32,14 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Prodcutos</div>
+		<div class="sticky-lg-top">Tienda de Productos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
 			<span class="navbar-brand" href="#">
-				<h3>M骴ulos</h3>
+				<h3>M贸dulos</h3>
 			</span>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -47,19 +47,19 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link"  href="listausuarios.jsp"><h3>Usuarios</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="listaclientes.jsp"><h3>Clientes</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
+          <a class="nav-link active"  aria-current="page" href="listaproveedores.jsp"><h3> <i class="fas fa-address-card"></i> Proveedores</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
+          <a class="nav-link" href="listaventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="reportes.jsp"><h3>Reportes</h3></a>
@@ -71,9 +71,9 @@
 
 <!-- Zona de ingreso de ingreso de informacio -->
 <div class="full-form">
-  <center>
+  
   <div id="error" class="alert alert-danger visually-hidden"
-					role="alert">Error en busqueda de proveedor, el NIT no existe</div>
+					role="alert">Error en busqueda de proveedor, el proveedor no existe</div>
 					
 			<div id="correcto" class="alert alert-success visually-hidden"
 				role="alert">Proveedor encontrado con exito</div>
@@ -85,49 +85,55 @@
        
       
         <div class="form-floating">      
-        <input type="number" class="form-control" class="input-field" id="nitproveedor" id="form-floating " placeholder="NIT" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"  required>
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-id-card"></i>&nbsp&nbspNIT</label>
+        <input type="number" class="form-control" class="input-field" id="nitproveedor" id="form-floating " placeholder=" Nit" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"  required>
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-id-card"></i>&nbsp&nbspNit</label>
       </div>
       
       <br/>
       <br/>
 
+
+		<button type="button" class="btn btn-warning" onclick="enviar()">
+				<i class="fas fa-edit"></i> Buscar Proveedor
+			</button>
+		
       <div class="form-floating">
-        <input type="text" class="form-control"  id="ciudad_proveedor" id="form-floating " placeholder="Ciudad Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Nombre Cliente" disabled="disabled" required>
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-city"></i>&nbsp&nbspCiudad Proveedor</label>
+        <input type="text" class="form-control"  id="ciudad_proveedor" id="form-floating " placeholder="ciudad_proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Ciudad Proveedor" disabled="disabled" required>
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-user"></i>&nbsp&nbspCiudad Proveedor</label>
       </div>
 
      
 
     <div class="col-12" >
       <div class="form-floating">
-        <input type="text" class="form-control" id="direccion_proveedor" id="form-floating " placeholder="Direcci髇 de proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Direcci髇 de Cliente" disabled="disabled" required>
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-house-house"></i>&nbsp&nbspDirecci髇 de proveedor</label>
+        <input type="text" class="form-control" id="direccion_proveedor" id="form-floating " placeholder="Direcci贸n de Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Direcci贸n de Proveedor" disabled="disabled" required>
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-house-user"></i>&nbsp&nbspDirecci贸n de Proveedor</label>
       </div>
     </div>
 
     <div class="col-12" >
       <div class="form-floating">
-        <input type="text" class="form-control" id="nombre_proveedor" id="form-floating " placeholder="Nombre de Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Telefono Cliente" disabled="disabled" required >
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-user"></i>&nbsp&nbspNombre de Proveedor</label>
+        <input type="text" class="form-control" id="nombre_proveedor" id="form-floating " placeholder="Nombre Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Nombre Proveedor" disabled="disabled" required >
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-mobile-alt"></i>&nbsp&nbspNombre Proveedor</label>
       </div>
     </div>
 
     <div class="col-12" >
       <div class="form-floating">
-        <input type="email" class="form-control" id="telefono_proveedor" id="form-floating " placeholder="Teleforno de Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="correo" disabled="disabled" required >
-        <label for="form-floating">&nbsp&nbsp<i class="fas fa-mobile-alt"></i>&nbsp&nbspTeleforno de Proveedor</label>
+        <input type="text" class="form-control" id="telefono_proveedor" id="form-floating " placeholder="Telefono Proveedor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="Telefono Proveedor" disabled="disabled" required >
+        <label for="form-floating">&nbsp&nbsp<i class="fas fa-at"></i>&nbsp&nbspTelefono Proveedor</label>
       </div>
     </div>
+    
     </div>
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarproveedor.jsp'">Crear Nuevo Proveedor</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="enviar()">Consultar Proveedor</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarproveedor.jsp'">Actualizar Proveedor</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarproveedor.jsp'">Borrar Proveedor</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaproveedores.jsp'">Lista de Proveedor</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/insertarproveedor.jsp'">Crear Proveedor</button>
+      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/consultarproveedor.jsp'">Consultar Proveedor</button>
+      <button type="button" class="btn btn-warning btn-lg"onclick="window.location.href='<%=request.getContextPath()%>/actualizarproveedor.jsp'">Actualizar Proveedor</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/eliminarproveedor.jsp'">Borrar Proveedor</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/listaproveedores.jsp'">Lista de Proveedores</button>
     </div>
   </div>
 </div>
@@ -141,11 +147,14 @@
 <script>
 function enviar() {
 
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/"
+			+ getUrl.pathname.split('/')[1];
 	
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
-	var nit = document.getElementById("nitproveedor").value;
-	req.open('GET', 'http://localhost:8080/consultarproveedor?nitproveedor='+nit, false);
+	var nit=   document.getElementById("nitproveedor").value;
+	req.open('GET', baseUrl+'/consultarproveedor?nitproveedor='+nit, false);
 	req.send(null);
 	var proveedor = null;
 	if (req.status == 200)

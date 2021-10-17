@@ -25,10 +25,15 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
 <script>
-	var baseurl = "http://localhost:8080/listaclientes";
+	<!--var baseurl = "http://localhost:8080/listaclientes";-->
+	
 	function loadclientes() {
+		
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];		
+		
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", baseurl, true);
+		xmlhttp.open("GET", baseUrl+'/listaclientes', true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var clientes = JSON.parse(xmlhttp.responseText);
@@ -59,7 +64,7 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Prodcutos</div>
+		<div class="sticky-lg-top">Tienda de Productos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->
@@ -74,7 +79,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link"  href="listausuarios.jsp"><h3>Usuarios</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="listaclientes.jsp"><h3>Clientes</h3></a>
@@ -89,7 +94,7 @@
           <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="reportes.jsp"><h3>Reportes</h3></a>
+          <a class="nav-link active" aria-current="page" href="reportes.jsp"><h3>  <i class="far fa-list-alt"></i> Reportes</h3></a>
         </li>
       </ul>
     </div>
@@ -98,14 +103,29 @@
 
 <!-- Zona de ingreso de ingreso de informacio -->
 <div class="full-form">
-  <center>
+  
+  <div style="padding-left: 5px">
+	 <center>
+		<h1>
+			Reporte Clientes
+		</h1>
+	</center>
+	<div class="container">
+  
   <form class="row g-3" id="flex-parent-element" type="" method="">
   
     <!--  Aqui es donde se autogenera la tabla basado en el script -->
+    
 					<div class="col align-self-center" id="clientesinfo">
 					
 					</div>
 
+  <div class="column">
+     <div id="flex-child-element">
+       <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/listausuariosreportes.jsp'">Lista Usuarios</button>
+      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/listaclientesreportes.jsp'">Lista Clientes</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/listaventasreporte.jsp'">Ventas por Cliente</button>
+    </div>
   
 </div>
 

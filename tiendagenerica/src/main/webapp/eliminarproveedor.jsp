@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -47,19 +47,19 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link" href="listausuarios.jsp"><h3>Usuarios</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="listaclientes.jsp" ><h3>Clientes</h3></a>
+          <a class="nav-link"   href="listaclientes.jsp" ><h3>Clientes</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="listaproveedores.jsp"><h3>Proveedores</h3></a>
+          <a class="nav-link active" aria-current="page" href="listaproveedores.jsp"><h3> <i class="fas fa-address-card"></i> Proveedores</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="insertarproducto.jsp"><h3>Productos</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
+          <a class="nav-link" href="listaventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="reportes.jsp"><h3>Reportes</h3></a>
@@ -71,7 +71,7 @@
 
 <!-- Zona de ingreso de ingreso de informacio -->
 <div class="full-form">
-  <center>
+  
   <div id="error" class="alert alert-danger visually-hidden"
 				role="alert">Error al eliminar el proveedor, verifique que 
 				exista un proveedor con el NIT ingresado</div>
@@ -80,11 +80,12 @@
 				role="alert">Proveedor eliminado con exito</div>
 			
 	<div style="padding-left: 5px">
+	<center>
 		<h1>
 			<i class="fas fa-skull-crossbones"></i> Escriba el NIT del proveedor a eliminar
 		</h1>
 		<div class="container">
-			
+	</center>			
 				
   <form class="row g-3" id="flex-parent-element" type="" method="">
     <div class="row">
@@ -94,12 +95,12 @@
     <div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">NIT</span> <input
 						type="text" class="form-control"
-						placeholder="Inserte el NIT aqui..."
+						placeholder="Inserte NIT aqui..."
 						aria-describedby="basic-addon1" required id="nitproveedor">
 				</div>
     
     <button type="button" class="btn btn-danger" onclick="eliminar()">
-				<i class="fas fa-skull-crossbones"></i> Eliminar Proveedor
+				<i class="fas fa-skull-crossbones"></i> Eliminar proveedor
 			</button>
     
 
@@ -107,11 +108,11 @@
   </div>
   <div class="column">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/insertarproveedor.jsp'">Crear </button>
-      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='/consultarproveedor.jsp'">Consultar Proveedor</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick="window.location.href='/actualizarproveedor.jsp'">Actualizar Proveedor</button>
-      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='/eliminarproveedor.jsp'">Borrar Proveedor</button>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/listaproveedores.jsp'">Lista de Proveedores</button>
+       <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/insertarproveedor.jsp'">Crear Proveedor</button>
+      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/consultarproveedor.jsp'">Consultar Proveedor</button>
+      <button type="button" class="btn btn-warning btn-lg"onclick="window.location.href='<%=request.getContextPath()%>/actualizarproveedor.jsp'">Actualizar Proveedor</button>
+      <button type="button" class="btn btn-danger btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/eliminarproveedor.jsp'">Borrar Proveedor</button>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/listaproveedores.jsp'">Lista de Proveedores</button>
     </div>
   </div>
 </div>
@@ -123,13 +124,18 @@
 </div>
 
 
+
 <script>
 
 function eliminar() {
+	
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+	
 	var y = document.getElementById("nitproveedor").value;
 	var req = new XMLHttpRequest();
 	var coincidencia = false;
-	req.open('GET', 'http://localhost:8080/listaprovedores', false);
+	req.open('GET', baseUrl+ '/listaprovedores', false);
 	req.send(null);
 	var proveedores = null;
 	if (req.status == 200)
@@ -149,7 +155,7 @@ function eliminar() {
 		var nit=document.getElementById("nitproveedor").value;
 		
 		var xhr = new XMLHttpRequest();
-		xhr.open("DELETE", "http://localhost:8080/eliminarprovedor?nitproveedor="+nit);
+		xhr.open("DELETE", baseUrl+"/eliminarprovedor?nitproveedor="+nit);
 		
 		var element = document.getElementById("error");
 		element.classList.add("visually-hidden");
@@ -169,6 +175,7 @@ function eliminar() {
 	}
 }
 </script>
+
 </body>
 
 </html>    

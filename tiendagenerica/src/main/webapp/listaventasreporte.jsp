@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -17,7 +17,7 @@
 	
 
 	<!--- estilos --->
-	<link href="purchasestyle.css" rel="stylesheet" type="text/css" />
+	<link href="usuariostyle.css" rel="stylesheet" type="text/css" />
 	<!--- CDN --->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
 	 crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -25,10 +25,14 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script>
-	var baseurl = "http://localhost:8080/listaventas";
+	<!--var baseurl = "http://localhost:8080/listaventas";-->
 	function loadventas() {
+		
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];	
+		
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", baseurl, true);
+		xmlhttp.open("GET", baseUrl+'/listaventas', true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var ventas = JSON.parse(xmlhttp.responseText);
@@ -38,8 +42,8 @@
 					main += "<tr><td>" + ventas[i].codigo_venta
 							+ "</td><td>" + ventas[i].cedula_cliente
 							+ "</td><td>" + ventas[i].ivaventa
-							+ "</td><td>" + ventas[i].total_venta + "</td><td>"
-							+ ventas[i].valor_venta + "</td></tr>";
+							+ "</td><td>" + ventas[i].total_venta 
+							+ "</td><td>" + ventas[i].valor_venta + "</td></tr>";
 				}
 				var tblbottom = "</table>";
 				var tbl = tbltop + main + tblbottom;
@@ -59,14 +63,14 @@
 	
 	<!-- Titulo -->
 	<h2>
-		<div class="sticky-lg-top">Tienda de Prodcutos</div>
+		<div class="sticky-lg-top">Tienda de Productos</div>
 	</h2>
 
 	<!-- Barra de Navegacion -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
 			<span class="navbar-brand" href="#">
-				<h3>Módulos</h3>
+				<h3>MÃ³dulos</h3>
 			</span>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -74,7 +78,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="listausuarios.jsp"><h3>Usuarios</h3></a>
+          <a class="nav-link"  href="listausuarios.jsp"><h3>Usuarios</h3></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="listaclientes.jsp"><h3>Clientes</h3></a>
@@ -89,28 +93,34 @@
           <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="reportes.jsp"><h3>Reportes</h3></a>
+          <a class="nav-link active" aria-current="page" href="reportes.jsp"><h3>  <i class="far fa-list-alt"></i> Reportes</h3></a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- Zona de ingreso de ingreso de informacion -->
+    
+<!-- Zona de ingreso de ingreso de informacio -->
 <div class="full-form">
-  <center>
-  <form id="form-prodcut"  type="" method="">
-
-    		<h1>
-			<i class="fas fa-file-invoice"></i> Consulta las ventas registradas
-		</h1>
-
-    	<div class="col align-self-center" id="ventasinfo">
+  
+  <form class="row g-3" id="flex-parent-element" type="" method="">
+  
+    <!--  Aqui es donde se autogenera la tabla basado en el script -->
+					<div class="col align-self-center" id="ventasinfo">
 					
 					</div>
-		
-		<button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/detalleventas.jsp'">Consultar Detalle De Ventas</button>
-		
+   
+  <div class="column">
+     <div id="flex-child-element">
+     	<button type="button"class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/detalleventas.jsp'">Consulta las ventas registradas</button>
+       <button type="button"class="btn btn-info btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/listausuariosreportes.jsp'">Lista Usuarios</button>
+      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/listaclientesreportes.jsp'">Lista Clientes</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/listaventasreporte.jsp'">Ventas por Cliente</button>
+    </div>
+  </div>
+</div>
+
 
   </form>
 </center>
@@ -120,4 +130,4 @@
 
 </body>
 
-</html>
+</html>    

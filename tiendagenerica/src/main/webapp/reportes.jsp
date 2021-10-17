@@ -89,7 +89,7 @@
           <a class="nav-link" href="calculoventas.jsp"><h3>Ventas</h3></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="reportes.jsp"><h3>Reportes</h3></a>
+          <a class="nav-link active" aria-current="page" href="reportes.jsp"><h3><i class="far fa-list-alt"></i> Reportes</h3></a>
         </li>
       </ul>
     </div>
@@ -108,9 +108,9 @@
 
 <div class="center">
      <div id="flex-child-element">
-      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/listausuariosreportes.jsp'">Lista Usuarios</button>
-      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='/listaclientesreportes.jsp'">Lista Cliente</button>
-      <button type="button" class="btn btn-warning btn-lg" onclick= "window.location.href='/listaventasreporte.jsp'">Ventas por Cliente</button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='<%=request.getContextPath()%>/listausuariosreportes.jsp'">Lista Usuarios</button>
+      <button type="button" class="btn btn-info btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/listaclientesreportes.jsp'">Lista Cliente</button>
+      <button type="button" class="btn btn-warning btn-lg" onclick= "window.location.href='<%=request.getContextPath()%>/listaventasreporte.jsp'">Ventas por Cliente</button>
     </div>
   
 </div>
