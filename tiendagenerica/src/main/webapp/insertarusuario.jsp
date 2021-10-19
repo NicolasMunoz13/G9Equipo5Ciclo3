@@ -117,7 +117,7 @@
       </div>
     </div>
     
-      <button type="button" class="btn btn-warning" onclick="validacion(); enviar()">
+      <button type="button" class="btn btn-warning" onclick="enviar()">
 		<i class="fas fa-edit"></i> Registrar Nuevo Usuario
 	</button>
     
@@ -150,7 +150,7 @@
 			var y = document.getElementById("cedula_usuario").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', baseUrl+'/listarusuarios', false);
+			req.open('GET', baseUrl+'/listausuarios', false);
 			req.send(null);
 			var usuarios = null;
 			if (req.status == 200)
